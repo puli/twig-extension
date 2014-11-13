@@ -83,6 +83,7 @@ relative paths:
 {% endblock %}
 ```
 
+[Composer]: https://getcomposer.org
 [Twig templating engine]: http://twig.sensiolabs.org
 [main documentation]: https://github.com/puli/puli/blob/master/README.md
 [`PuliTemplateLoader`]: ../src/PuliTemplateLoader.php
