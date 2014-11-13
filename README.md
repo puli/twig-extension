@@ -23,6 +23,23 @@ echo $twig->render('/acme/blog/views/show.html.twig');
 Installation
 ------------
 
+You can install the extension with [Composer]:
+
+```json
+{
+    "require": {
+        "puli/twig-puli-extension": "~1.0@dev"
+    }
+}
+```
+
+Run `composer install` or `composer update` to install the library. At last,
+include Composer's generated autoloader and you're ready to start:
+
+```php
+require_once __DIR__.'/vendor/autoload.php';
+```
+
 In order to activate the extension, create a new [`PuliTemplateLoader`] and
 register it with Twig. The loader turns a Puli path into an absolute path when
 loading a template. Then, create a new [`PuliExtension`] and add it to Twig.
@@ -67,6 +84,6 @@ relative paths:
 ```
 
 [Twig templating engine]: http://twig.sensiolabs.org
-[main documentation]: ../README.md
-[`PuliTemplateLoader`]: ../src/Extension/Twig/PuliTemplateLoader.php
-[`PuliExtension`]: ../src/Extension/Twig/PuliExtension.php
+[main documentation]: https://github.com/puli/puli/blob/master/README.md
+[`PuliTemplateLoader`]: ../src/PuliTemplateLoader.php
+[`PuliExtension`]: ../src/PuliExtension.php
