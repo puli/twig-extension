@@ -1,0 +1,34 @@
+{
+    "name": "puli/twig-puli-extension",
+    "description": "A Puli extension for the Twig templating system.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Bernhard Schussek",
+            "email": "bschussek@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.9",
+        "puli/puli": "~1.0@dev",
+        "twig/twig": "~1.0"
+    },
+    "require-dev": {
+        "symfony/http-kernel": "~2.3"
+    },
+    "suggest": {
+        "symfony/http-kernel": "The Twig extension provides a cache warmer for Symfony's HttpKernel component."
+    },
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Puli\\Twig\\PuliExtension\\": "src/",
+            "Puli\\Twig\\PuliExtension\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
