@@ -47,8 +47,8 @@ The extension takes care that templates loaded by the [`PuliTemplateLoader`]
 are processed correctly.
 
 ```php
-use Puli\Twig\PuliExtension\PuliTemplateLoader;
-use Puli\Twig\PuliExtension\PuliExtension;
+use Puli\Extension\Twig\PuliTemplateLoader;
+use Puli\Extension\Twig\PuliExtension;
 
 $twig = new \Twig_Environment(new PuliTemplateLoader($repo));
 $twig->addExtension(new PuliExtension($repo));
@@ -86,5 +86,5 @@ relative paths:
 [Composer]: https://getcomposer.org
 [Twig templating engine]: http://twig.sensiolabs.org
 [main documentation]: https://github.com/puli/puli/blob/master/README.md
-[`PuliTemplateLoader`]: ../src/PuliTemplateLoader.php
-[`PuliExtension`]: ../src/PuliExtension.php
+[`PuliTemplateLoader`]: src/PuliTemplateLoader.php
+[`PuliExtension`]: src/PuliExtension.php

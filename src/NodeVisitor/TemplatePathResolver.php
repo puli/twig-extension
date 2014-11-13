@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Puli\Twig\PuliExtension\NodeVisitor;
+namespace Puli\Extension\Twig\NodeVisitor;
 
-use Puli\Twig\PuliExtension\PuliExtension;
+use Puli\Extension\Twig\PuliExtension;
 
 /**
  * @since  1.0

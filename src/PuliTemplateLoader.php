@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Puli\Twig\PuliExtension;
+namespace Puli\Extension\Twig;
 
 use Puli\Repository\InvalidPathException;
 use Puli\Repository\ResourceNotFoundException;

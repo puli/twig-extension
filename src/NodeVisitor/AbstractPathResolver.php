@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Puli\Twig\PuliExtension\NodeVisitor;
+namespace Puli\Extension\Twig\NodeVisitor;
 
 use Puli\Repository\ResourceRepositoryInterface;
 use Puli\Util\Path;

@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Puli\Twig\PuliExtension\Node;
+namespace Puli\Extension\Twig\Node;
 
 /**
- * Marks templates loaded by {@link \Puli\Twig\PuliExtension\Loader\PuliTemplateLoader}.
+ * Marks templates loaded by {@link \Puli\Extension\Twig\Loader\PuliTemplateLoader}.
  *
  * @since  1.0
  * @author Bernhard Schussek <bschussek@gmail.com>

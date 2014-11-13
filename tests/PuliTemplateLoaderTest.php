@@ -11,7 +11,7 @@
 
 namespace Puli\Tests\Extension\Twig;
 
-use Puli\Twig\PuliExtension\PuliTemplateLoader;
+use Puli\Extension\Twig\PuliTemplateLoader;
 use Puli\Repository\ResourceRepositoryInterface;
 use Puli\Tests\Resource\TestDirectory;
 

@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Puli\Twig\PuliExtension;
+namespace Puli\Extension\Twig;
 
-use Puli\Twig\PuliExtension\NodeVisitor\LoadedByPuliTagger;
-use Puli\Twig\PuliExtension\NodeVisitor\TemplatePathResolver;
-use Puli\Twig\PuliExtension\TokenParser\LoadedByPuliTokenParser;
+use Puli\Extension\Twig\NodeVisitor\LoadedByPuliTagger;
+use Puli\Extension\Twig\NodeVisitor\TemplatePathResolver;
+use Puli\Extension\Twig\TokenParser\LoadedByPuliTokenParser;
 use Puli\Repository\ResourceRepositoryInterface;
 
 /**
