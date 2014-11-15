@@ -1,5 +1,5 @@
-Loading Twig Templates with Puli
-================================
+Puli Extension for Twig
+=======================
 
 [![Build Status](https://travis-ci.org/puli/twig-puli-extension.png?branch=master)](https://travis-ci.org/puli/twig-puli-extension)
 [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/puli/twig-puli-extension/badges/quality-score.png?s=f1fbf1884aed7f896c18fc237d3eed5823ac85eb)](https://scrutinizer-ci.com/g/puli/twig-puli-extension/)
@@ -14,77 +14,41 @@ Latest release: none
 PHP >= 5.3.9
 
 With this extension for the [Twig templating engine], you can refer to template
-files through Puli paths:
+files through [Puli] paths:
 
 ```php
 echo $twig->render('/acme/blog/views/show.html.twig');
 ```
 
-Installation
-------------
+Installation/Documentation
+--------------------------
 
-You can install the extension with [Composer]:
+Follow the guide [Loading Twig Templates with Puli] to install the extension in
+your project. This guide will tell you all you need to know to use the extension.
 
-```json
-{
-    "require": {
-        "puli/twig-puli-extension": "~1.0@dev"
-    }
-}
-```
+Contribute
+----------
 
-Run `composer install` or `composer update` to install the library. At last,
-include Composer's generated autoloader and you're ready to start:
+Contributions to are very welcome!
 
-```php
-require_once __DIR__.'/vendor/autoload.php';
-```
+* Report any bugs or issues you find on the [issue tracker].
+* You can grab the source code at Puli’s [Git repository].
 
-In order to activate the extension, create a new [`PuliTemplateLoader`] and
-register it with Twig. The loader turns a Puli path into an absolute path when
-loading a template. Then, create a new [`PuliExtension`] and add it to Twig.
-The extension takes care that templates loaded by the [`PuliTemplateLoader`]
-are processed correctly.
+Support
+-------
 
-```php
-use Puli\Extension\Twig\PuliTemplateLoader;
-use Puli\Extension\Twig\PuliExtension;
+If you are having problems, send a mail to bschussek@gmail.com or shout out to
+[@webmozart] on Twitter.
 
-$twig = new \Twig_Environment(new PuliTemplateLoader($repo));
-$twig->addExtension(new PuliExtension($repo));
-```
+License
+-------
 
-As you see in this code snippet, you need to pass the Puli repository to
-both the loader and the extension. If you don't know how to create that, you can 
-find more information in Puli's [main documentation].
+Puli and its documentation are licensed under the [MIT license].
 
-Usage
------
-
-Using Puli in Twig is straight-forward: Use Puli paths wherever you would
-usually use a file path. For example:
-
-```twig
-{% extends '/acme/blog/views/layout.html.twig' %}
-
-{% block content %}
-    {# ... #}
-{% endblock %}
-```
-
-Contrary to Twig's default behavior, you can also refer to templates using
-relative paths:
-
-```twig
-{% extends 'layout.html.twig' %}
-
-{% block content %}
-    {# ... #}
-{% endblock %}
-```
-
-[Composer]: https://getcomposer.org
 [Twig templating engine]: http://twig.sensiolabs.org
-[main documentation]: https://github.com/puli/puli/blob/master/README.md
-[`PuliTemplateLoader`]: src/PuliTemplateLoader.php
-[`PuliExtension`]: src/PuliExtension.php
+[Puli]: https://github.com/puli/puli
+[Loading Twig Templates with Puli]: http://puli.readthedocs.org/en/latest/extensions/twig.html
+[issue tracker]: https://github.com/puli/puli/issues
+[Git repository]: https://github.com/puli/twig-puli-extension
+[@webmozart]: https://twitter.com/webmozart
+[MIT license]: LICENSE
