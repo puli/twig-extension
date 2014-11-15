@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Puli\Tests\Extension\Twig;
+namespace Puli\Extension\Twig\Tests;
 
 use Puli\Extension\Twig\PuliTemplateLoader;
 use Puli\Repository\ResourceRepositoryInterface;

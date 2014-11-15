@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Puli\Tests\Extension\Twig\CacheWarmer;
+namespace Puli\Extension\Twig\Tests\CacheWarmer;
 
 use Puli\Extension\Twig\CacheWarmer\TwigTemplateCacheWarmer;
 use Puli\Repository\ResourceRepository;
