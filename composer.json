@@ -22,7 +22,11 @@
     "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
-            "Puli\\Extension\\Twig\\": "src/",
+            "Puli\\Extension\\Twig\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
             "Puli\\Extension\\Twig\\Tests\\": "tests/"
         }
     },
