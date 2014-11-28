@@ -12,7 +12,7 @@
 namespace Puli\Extension\Twig\NodeVisitor;
 
 use Puli\Repository\ResourceRepositoryInterface;
-use Puli\Util\Path;
+use Webmozart\PathUtil\Path;
 
 /**
  * @since  1.0
