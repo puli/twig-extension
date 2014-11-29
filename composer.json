@@ -11,7 +11,8 @@
     "require": {
         "php": ">=5.3.9",
         "puli/puli": "~1.0@dev",
-        "twig/twig": "~1.0"
+        "twig/twig": "~1.0",
+        "webmozart/path-util" : "~1.0"
     },
     "require-dev": {
         "symfony/http-kernel": "~2.3"
@@ -27,7 +28,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Puli\\Extension\\Twig\\Tests\\": "tests/"
+            "Puli\\Extension\\Twig\\Tests\\": "tests/",
+            "Puli\\Tests\\": "vendor/puli/puli/tests/"
         }
     },
     "extra": {
