@@ -66,6 +66,6 @@ class TemplatePathResolver extends AbstractPathResolver
 
     private function processConstantNode(\Twig_Node_Expression_Constant $node)
     {
-        $node->setAttribute('value', $this->resolvePath($node->getAttribute('value')));
+        $node->setAttribute('value', $this->resolvePath($node->getAttribute('value'), $this->currentDir));
     }
 }

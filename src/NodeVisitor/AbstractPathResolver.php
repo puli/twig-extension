@@ -11,6 +11,7 @@
 
 namespace Puli\Extension\Twig\NodeVisitor;
 
+use Puli\Extension\Twig\PathResolverInterface;
 use Puli\Repository\ResourceRepositoryInterface;
 use Webmozart\PathUtil\Path;
 
@@ -18,7 +19,7 @@ use Webmozart\PathUtil\Path;
  * @since  1.0
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-abstract class AbstractPathResolver implements \Twig_NodeVisitorInterface
+abstract class AbstractPathResolver implements \Twig_NodeVisitorInterface, PathResolverInterface
 {
     /**
      * @var ResourceRepositoryInterface
@@ -75,7 +76,10 @@ abstract class AbstractPathResolver implements \Twig_NodeVisitorInterface
         return $node;
     }
 
-    protected function resolvePath($path)
+    /**
+     * {@inheritdoc}
+     */
+    public function resolvePath($path, $currentDir)
     {
         // Empty path? WTF I don't want to deal with this.
         if ('' === $path) {
@@ -88,7 +92,7 @@ abstract class AbstractPathResolver implements \Twig_NodeVisitorInterface
         }
 
         // Resolve relative paths
-        $absolutePath = Path::canonicalize($this->currentDir.'/'.$path);
+        $absolutePath = Path::makeAbsolute($path, $currentDir);
 
         // With other loaders enabled, it may happen that a path looks like
         // a relative path, but is none, for example

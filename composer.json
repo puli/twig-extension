@@ -20,7 +20,6 @@
     "suggest": {
         "symfony/http-kernel": "The Twig extension provides a cache warmer for Symfony's HttpKernel component."
     },
-    "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
             "Puli\\Extension\\Twig\\": "src/"
