@@ -19,6 +19,8 @@ files through [Puli] paths:
 echo $twig->render('/acme/blog/views/show.html.twig');
 ```
 
+Read [Puli at a Glance] if you want to learn more about Puli.
+
 Authors
 -------
 
@@ -55,6 +57,7 @@ All contents of this package are licensed under the [MIT license].
 [Twig templating engine]: http://twig.sensiolabs.org
 [Puli]: https://github.com/puli/puli
 [Loading Twig Templates with Puli]: http://puli.readthedocs.org/en/latest/extensions/twig.html
+[Puli at a Glance]: http://puli.readthedocs.org/en/latest/at-a-glance.html
 [issue tracker]: https://github.com/puli/puli/issues
 [Git repository]: https://github.com/puli/twig-puli-extension
 [@webmozart]: https://twitter.com/webmozart
