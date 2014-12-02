@@ -19,6 +19,12 @@ files through [Puli] paths:
 echo $twig->render('/acme/blog/views/show.html.twig');
 ```
 
+Authors
+-------
+
+* [Bernhard Schussek] a.k.a. [@webmozart]
+* [The Community Contributors]
+
 Installation/Documentation
 --------------------------
 
@@ -44,6 +50,8 @@ License
 
 All contents of this package are licensed under the [MIT license].
 
+[Bernhard Schussek]: http://webmozarts.com
+[The Community Contributors]: https://github.com/puli/twig-puli-extension/graphs/contributors
 [Twig templating engine]: http://twig.sensiolabs.org
 [Puli]: https://github.com/puli/puli
 [Loading Twig Templates with Puli]: http://puli.readthedocs.org/en/latest/extensions/twig.html
