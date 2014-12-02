@@ -28,7 +28,7 @@
     "autoload-dev": {
         "psr-4": {
             "Puli\\Extension\\Twig\\Tests\\": "tests/",
-            "Puli\\Tests\\": "vendor/puli/puli/tests/"
+            "Puli\\Repository\\Tests\\": "vendor/puli/puli/tests/"
         }
     },
     "extra": {

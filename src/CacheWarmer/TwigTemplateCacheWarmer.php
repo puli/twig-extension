@@ -11,10 +11,10 @@
 
 namespace Puli\Extension\Twig\CacheWarmer;
 
+use Puli\Repository\Resource\Iterator\RecursiveResourceIterator;
+use Puli\Repository\Resource\Iterator\ResourceCollectionIterator;
+use Puli\Repository\Resource\Iterator\ResourceFilterIterator;
 use Puli\Repository\ResourceRepositoryInterface;
-use Puli\Resource\Iterator\RecursiveResourceIterator;
-use Puli\Resource\Iterator\ResourceCollectionIterator;
-use Puli\Resource\Iterator\ResourceFilterIterator;
 use Symfony\Component\HttpKernel\CacheWarmer\CacheWarmerInterface;
 
 /**

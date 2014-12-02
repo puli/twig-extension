@@ -12,9 +12,9 @@
 namespace Puli\Extension\Twig;
 
 use Puli\Repository\InvalidPathException;
+use Puli\Repository\Resource\FileResourceInterface;
 use Puli\Repository\ResourceNotFoundException;
 use Puli\Repository\ResourceRepositoryInterface;
-use Puli\Resource\FileResourceInterface;
 
 /**
  * @since  1.0
