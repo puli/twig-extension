@@ -1,12 +1,12 @@
 Puli Extension for Twig
 =======================
 
-[![Build Status](https://travis-ci.org/puli/twig-puli-extension.png?branch=master)](https://travis-ci.org/puli/twig-puli-extension)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/puli/twig-puli-extension/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/puli/twig-puli-extension/?branch=master)
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/b9a2807d-a63a-45a1-a681-0f706f81805c/mini.png)](https://insight.sensiolabs.com/projects/b9a2807d-a63a-45a1-a681-0f706f81805c)
-[![Latest Stable Version](https://poser.pugx.org/puli/twig-puli-extension/v/stable.png)](https://packagist.org/packages/puli/twig-puli-extension)
-[![Total Downloads](https://poser.pugx.org/puli/twig-puli-extension/downloads.png)](https://packagist.org/packages/puli/twig-puli-extension)
-[![Dependency Status](https://www.versioneye.com/php/puli:twig-puli-extension/1.0.0/badge.png)](https://www.versioneye.com/php/puli:twig-puli-extension/1.0.0)
+[![Build Status](https://travis-ci.org/puli/twig-extension.png?branch=master)](https://travis-ci.org/puli/twig-extension)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/puli/twig-extension/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/puli/twig-extension/?branch=master)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/63fa6b60-7f9c-4a47-ab76-db0e259f9075/mini.png)](https://insight.sensiolabs.com/projects/63fa6b60-7f9c-4a47-ab76-db0e259f9075)
+[![Latest Stable Version](https://poser.pugx.org/puli/twig-extension/v/stable.png)](https://packagist.org/packages/puli/twig-extension)
+[![Total Downloads](https://poser.pugx.org/puli/twig-extension/downloads.png)](https://packagist.org/packages/puli/twig-extension)
+[![Dependency Status](https://www.versioneye.com/php/puli:twig-extension/1.0.0/badge.png)](https://www.versioneye.com/php/puli:twig-extension/1.0.0)
 
 Latest release: none
 
@@ -53,12 +53,12 @@ License
 All contents of this package are licensed under the [MIT license].
 
 [Bernhard Schussek]: http://webmozarts.com
-[The Community Contributors]: https://github.com/puli/twig-puli-extension/graphs/contributors
+[The Community Contributors]: https://github.com/puli/twig-extension/graphs/contributors
 [Twig templating engine]: http://twig.sensiolabs.org
 [Puli]: https://github.com/puli/puli
 [Loading Twig Templates with Puli]: http://puli.readthedocs.org/en/latest/extensions/twig.html
 [Puli at a Glance]: http://puli.readthedocs.org/en/latest/at-a-glance.html
 [issue tracker]: https://github.com/puli/puli/issues
-[Git repository]: https://github.com/puli/twig-puli-extension
+[Git repository]: https://github.com/puli/twig-extension
 [@webmozart]: https://twitter.com/webmozart
 [MIT license]: LICENSE
