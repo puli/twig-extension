@@ -12,6 +12,10 @@
 namespace Puli\Extension\Twig\NodeVisitor;
 
 use Puli\Extension\Twig\PuliExtension;
+use Twig_Node_Expression_Constant;
+use Twig_Node_Include;
+use Twig_Node_Module;
+use Twig_NodeInterface;
 
 /**
  * @since  1.0
@@ -34,37 +38,37 @@ class TemplatePathResolver extends AbstractPathResolver
     /**
      * {@inheritdoc}
      */
-    protected function processNode(\Twig_NodeInterface $node)
+    protected function processNode(Twig_NodeInterface $node)
     {
-        if ($node instanceof \Twig_Node_Module) {
+        if ($node instanceof Twig_Node_Module) {
             // Resolve relative parent template paths to absolute paths
             $parentNode = $node->getNode('parent');
 
             // If the template extends another template, resolve the path
-            if ($parentNode instanceof \Twig_Node_Expression_Constant) {
+            if ($parentNode instanceof Twig_Node_Expression_Constant) {
                 $this->processConstantNode($parentNode);
             }
 
             // Resolve paths of embedded templates
             foreach ($node->getAttribute('embedded_templates') as $embeddedNode) {
-                /** @var \Twig_Node_Module $embeddedNode */
+                /** @var Twig_Node_Module $embeddedNode */
                 $embedParent = $embeddedNode->getNode('parent');
 
                 // If the template extends another template, resolve the path
-                if ($embedParent instanceof \Twig_Node_Expression_Constant) {
+                if ($embedParent instanceof Twig_Node_Expression_Constant) {
                     $this->processConstantNode($embedParent);
                 }
             }
-        } elseif ($node instanceof \Twig_Node_Include) {
+        } elseif ($node instanceof Twig_Node_Include) {
             $exprNode = $node->getNode('expr');
 
-            if ($exprNode instanceof \Twig_Node_Expression_Constant) {
+            if ($exprNode instanceof Twig_Node_Expression_Constant) {
                 $this->processConstantNode($exprNode);
             }
         }
     }
 
-    private function processConstantNode(\Twig_Node_Expression_Constant $node)
+    private function processConstantNode(Twig_Node_Expression_Constant $node)
     {
         $node->setAttribute('value', $this->resolvePath($node->getAttribute('value'), $this->currentDir));
     }

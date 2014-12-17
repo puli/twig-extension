@@ -11,6 +11,7 @@
 
 namespace Puli\Extension\Twig\Tests\CacheWarmer;
 
+use PHPUnit_Framework_TestCase;
 use Puli\Extension\Twig\CacheWarmer\TwigTemplateCacheWarmer;
 use Puli\Repository\InMemoryRepository;
 
@@ -18,7 +19,7 @@ use Puli\Repository\InMemoryRepository;
  * @since  1.0
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-class TwigTemplateCacheWarmerTest extends \PHPUnit_Framework_TestCase
+class TwigTemplateCacheWarmerTest extends PHPUnit_Framework_TestCase
 {
     public function testWarmUp()
     {

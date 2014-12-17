@@ -11,6 +11,8 @@
 
 namespace Puli\Extension\Twig\Tests;
 
+use PHPUnit_Framework_MockObject_MockObject;
+use PHPUnit_Framework_TestCase;
 use Puli\Extension\Twig\PuliTemplateLoader;
 use Puli\Repository\ResourceRepository;
 use Puli\Repository\Tests\Resource\TestDirectory;
@@ -19,10 +21,10 @@ use Puli\Repository\Tests\Resource\TestDirectory;
  * @since  1.0
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-class PuliTemplateLoaderTest extends \PHPUnit_Framework_TestCase
+class PuliTemplateLoaderTest extends PHPUnit_Framework_TestCase
 {
     /**
-     * @var ResourceRepository|\PHPUnit_Framework_MockObject_MockObject
+     * @var ResourceRepository|PHPUnit_Framework_MockObject_MockObject
      */
     private $repo;
 

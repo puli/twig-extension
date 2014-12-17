@@ -15,12 +15,14 @@ use Puli\Repository\InvalidPathException;
 use Puli\Repository\Resource\FileResource;
 use Puli\Repository\ResourceNotFoundException;
 use Puli\Repository\ResourceRepository;
+use Twig_Error_Loader;
+use Twig_LoaderInterface;
 
 /**
  * @since  1.0
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-class PuliTemplateLoader implements \Twig_LoaderInterface
+class PuliTemplateLoader implements Twig_LoaderInterface
 {
     private $repo;
 
@@ -36,7 +38,7 @@ class PuliTemplateLoader implements \Twig_LoaderInterface
      *
      * @return string The template source code
      *
-     * @throws \Twig_Error_Loader When $path is not found
+     * @throws Twig_Error_Loader When $path is not found
      */
     public function getSource($path)
     {
@@ -44,7 +46,7 @@ class PuliTemplateLoader implements \Twig_LoaderInterface
             $file = $this->repo->get($path);
 
             if (!$file instanceof FileResource) {
-                throw new \Twig_Error_Loader(sprintf(
+                throw new Twig_Error_Loader(sprintf(
                     'Can only load file resources. Resource "%s" is of type %s.',
                     $path,
                     is_object($file) ? get_class($file) : gettype($file)
@@ -59,9 +61,9 @@ class PuliTemplateLoader implements \Twig_LoaderInterface
             // output.
             return "{% loaded_by_puli %}".$file->getContents();
         } catch (ResourceNotFoundException $e) {
-            throw new \Twig_Error_Loader($e->getMessage(), -1, null, $e);
+            throw new Twig_Error_Loader($e->getMessage(), -1, null, $e);
         } catch (InvalidPathException $e) {
-            throw new \Twig_Error_Loader($e->getMessage(), -1, null, $e);
+            throw new Twig_Error_Loader($e->getMessage(), -1, null, $e);
         }
     }
 
@@ -72,7 +74,7 @@ class PuliTemplateLoader implements \Twig_LoaderInterface
      *
      * @return string The cache key
      *
-     * @throws \Twig_Error_Loader When $path is not found
+     * @throws Twig_Error_Loader When $path is not found
      */
     public function getCacheKey($path)
     {
@@ -87,9 +89,9 @@ class PuliTemplateLoader implements \Twig_LoaderInterface
             // he cache.
             return '__puli__'.$this->repo->get($path)->getPath();
         } catch (ResourceNotFoundException $e) {
-            throw new \Twig_Error_Loader($e->getMessage(), -1, null, $e);
+            throw new Twig_Error_Loader($e->getMessage(), -1, null, $e);
         } catch (InvalidPathException $e) {
-            throw new \Twig_Error_Loader($e->getMessage(), -1, null, $e);
+            throw new Twig_Error_Loader($e->getMessage(), -1, null, $e);
         }
     }
 
@@ -101,7 +103,7 @@ class PuliTemplateLoader implements \Twig_LoaderInterface
      *
      * @return Boolean true if the template is fresh, false otherwise
      *
-     * @throws \Twig_Error_Loader When $path is not found
+     * @throws Twig_Error_Loader When $path is not found
      */
     public function isFresh($path, $time)
     {
@@ -109,7 +111,7 @@ class PuliTemplateLoader implements \Twig_LoaderInterface
             $file = $this->repo->get($path);
 
             if (!$file instanceof FileResource) {
-                throw new \Twig_Error_Loader(sprintf(
+                throw new Twig_Error_Loader(sprintf(
                     'Can only load file resources. Resource "%s" is of type %s.',
                     $path,
                     is_object($file) ? get_class($file) : gettype($file)
@@ -118,9 +120,9 @@ class PuliTemplateLoader implements \Twig_LoaderInterface
 
             return $file->getLastModifiedAt() <= $time;
         } catch (ResourceNotFoundException $e) {
-            throw new \Twig_Error_Loader($e->getMessage(), -1, null, $e);
+            throw new Twig_Error_Loader($e->getMessage(), -1, null, $e);
         } catch (InvalidPathException $e) {
-            throw new \Twig_Error_Loader($e->getMessage(), -1, null, $e);
+            throw new Twig_Error_Loader($e->getMessage(), -1, null, $e);
         }
     }
 }

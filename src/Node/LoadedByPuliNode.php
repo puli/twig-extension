@@ -11,12 +11,14 @@
 
 namespace Puli\Extension\Twig\Node;
 
+use Twig_Node;
+
 /**
- * Marks templates loaded by {@link \Puli\Extension\Twig\Loader\PuliTemplateLoader}.
+ * Marks templates loaded by {@link TPuliTemplateLoader}.
  *
  * @since  1.0
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-class LoadedByPuliNode extends \Twig_Node
+class LoadedByPuliNode extends Twig_Node
 {
 }

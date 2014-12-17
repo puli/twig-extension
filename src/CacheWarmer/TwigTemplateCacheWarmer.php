@@ -15,7 +15,10 @@ use Puli\Repository\Resource\Iterator\RecursiveResourceIteratorIterator;
 use Puli\Repository\Resource\Iterator\ResourceCollectionIterator;
 use Puli\Repository\Resource\Iterator\ResourceFilterIterator;
 use Puli\Repository\ResourceRepository;
+use RuntimeException;
 use Symfony\Component\HttpKernel\CacheWarmer\CacheWarmerInterface;
+use Twig_Environment;
+use Twig_Error;
 
 /**
  * Generates the Twig cache for all templates in the resource repository.
@@ -35,11 +38,11 @@ class TwigTemplateCacheWarmer implements CacheWarmerInterface
     private $suffix;
 
     /**
-     * @var \Twig_Environment
+     * @var Twig_Environment
      */
     private $twig;
 
-    public function __construct(ResourceRepository $repo, \Twig_Environment $twig, $suffix = '.twig')
+    public function __construct(ResourceRepository $repo, Twig_Environment $twig, $suffix = '.twig')
     {
         $this->repo = $repo;
         $this->suffix = $suffix;
@@ -51,7 +54,7 @@ class TwigTemplateCacheWarmer implements CacheWarmerInterface
      *
      * @param string $cacheDir The cache directory
      *
-     * @throws \RuntimeException If setEnvironment() wasn't called
+     * @throws RuntimeException If setEnvironment() wasn't called
      */
     public function warmUp($cacheDir)
     {
@@ -70,7 +73,7 @@ class TwigTemplateCacheWarmer implements CacheWarmerInterface
         foreach ($iterator as $path) {
             try {
                 $this->twig->loadTemplate($path);
-            } catch (\Twig_Error $e) {
+            } catch (Twig_Error $e) {
                 // Problem during compilation, stop
             }
         }

@@ -13,13 +13,17 @@ namespace Puli\Extension\Twig\NodeVisitor;
 
 use Puli\Extension\Twig\PathResolver;
 use Puli\Repository\ResourceRepository;
+use Twig_Environment;
+use Twig_Node_Module;
+use Twig_NodeInterface;
+use Twig_NodeVisitorInterface;
 use Webmozart\PathUtil\Path;
 
 /**
  * @since  1.0
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-abstract class AbstractPathResolver implements \Twig_NodeVisitorInterface, PathResolver
+abstract class AbstractPathResolver implements Twig_NodeVisitorInterface, PathResolver
 {
     /**
      * @var ResourceRepository
@@ -39,15 +43,15 @@ abstract class AbstractPathResolver implements \Twig_NodeVisitorInterface, PathR
     /**
      * Called before child nodes are visited.
      *
-     * @param \Twig_NodeInterface $node The node to visit
-     * @param \Twig_Environment   $env  The Twig environment instance
+     * @param Twig_NodeInterface $node The node to visit
+     * @param Twig_Environment   $env  The Twig environment instance
      *
-     * @return \Twig_NodeInterface The modified node
+     * @return Twig_NodeInterface The modified node
      */
-    public function enterNode(\Twig_NodeInterface $node, \Twig_Environment $env)
+    public function enterNode(Twig_NodeInterface $node, Twig_Environment $env)
     {
         // Remember the directory of the current file
-        if ($node instanceof \Twig_Node_Module && $node->hasAttribute('puli')) {
+        if ($node instanceof Twig_Node_Module && $node->hasAttribute('puli')) {
             // Currently, it doesn't seem like Twig does recursive traversals
             // (i.e. starting the traversal of another module while a previous
             // one is still in progress). Thus we don't need to track existing
@@ -61,12 +65,12 @@ abstract class AbstractPathResolver implements \Twig_NodeVisitorInterface, PathR
     /**
      * Called after child nodes are visited.
      *
-     * @param \Twig_NodeInterface $node The node to visit
-     * @param \Twig_Environment   $env  The Twig environment instance
+     * @param Twig_NodeInterface $node The node to visit
+     * @param Twig_Environment   $env  The Twig environment instance
      *
-     * @return \Twig_NodeInterface|false The modified node or false if the node must be removed
+     * @return Twig_NodeInterface|false The modified node or false if the node must be removed
      */
-    public function leaveNode(\Twig_NodeInterface $node, \Twig_Environment $env)
+    public function leaveNode(Twig_NodeInterface $node, Twig_Environment $env)
     {
         // Only process if the current directory was set
         if (null !== $this->currentDir) {
@@ -107,9 +111,9 @@ abstract class AbstractPathResolver implements \Twig_NodeVisitorInterface, PathR
     }
 
     /**
-     * @param \Twig_NodeInterface $node
+     * @param Twig_NodeInterface $node
      *
-     * @return \Twig_NodeInterface
+     * @return Twig_NodeInterface
      */
-    abstract protected function processNode(\Twig_NodeInterface $node);
+    abstract protected function processNode(Twig_NodeInterface $node);
 }

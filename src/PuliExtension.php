@@ -15,12 +15,14 @@ use Puli\Extension\Twig\NodeVisitor\LoadedByPuliTagger;
 use Puli\Extension\Twig\NodeVisitor\TemplatePathResolver;
 use Puli\Extension\Twig\TokenParser\LoadedByPuliTokenParser;
 use Puli\Repository\ResourceRepository;
+use Twig_Extension;
+use Twig_NodeVisitorInterface;
 
 /**
  * @since  1.0
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-class PuliExtension extends \Twig_Extension
+class PuliExtension extends Twig_Extension
 {
     /**
      * Priority for node visitors that want to work with relative path before
@@ -61,7 +63,7 @@ class PuliExtension extends \Twig_Extension
     /**
      * Returns the node visitor instances to add to the existing list.
      *
-     * @return \Twig_NodeVisitorInterface[] An array of Twig_NodeVisitorInterface instances
+     * @return Twig_NodeVisitorInterface[] An array of Twig_NodeVisitorInterface instances
      */
     public function getNodeVisitors()
     {

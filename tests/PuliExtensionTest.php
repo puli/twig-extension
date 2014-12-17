@@ -11,15 +11,18 @@
 
 namespace Puli\Extension\Twig\Tests;
 
+use PHPUnit_Framework_TestCase;
 use Puli\Extension\Twig\PuliExtension;
 use Puli\Extension\Twig\PuliTemplateLoader;
 use Puli\Repository\InMemoryRepository;
+use Twig_Loader_Chain;
+use Twig_Loader_Filesystem;
 
 /**
  * @since  1.0
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-class PuliExtensionTest extends \PHPUnit_Framework_TestCase
+class PuliExtensionTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @var RandomizedTwigEnvironment
@@ -36,9 +39,9 @@ class PuliExtensionTest extends \PHPUnit_Framework_TestCase
         $this->repo = new InMemoryRepository();
         $this->repo->add('/acme/blog/views', __DIR__.'/Fixtures/puli');
 
-        $this->twig = new RandomizedTwigEnvironment(new \Twig_Loader_Chain(array(
+        $this->twig = new RandomizedTwigEnvironment(new Twig_Loader_Chain(array(
             new PuliTemplateLoader($this->repo),
-            new \Twig_Loader_Filesystem(__DIR__.'/Fixtures'),
+            new Twig_Loader_Filesystem(__DIR__.'/Fixtures'),
         )));
         $this->twig->addExtension(new PuliExtension($this->repo));
     }

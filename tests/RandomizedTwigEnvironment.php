@@ -11,6 +11,9 @@
 
 namespace Puli\Extension\Twig\Tests;
 
+use Twig_Environment;
+use Twig_LoaderInterface;
+
 /**
  * Twig_Environment implementation which prevents unrepeatable tests.
  *
@@ -25,11 +28,11 @@ namespace Puli\Extension\Twig\Tests;
  * @since  1.0
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-class RandomizedTwigEnvironment extends \Twig_Environment
+class RandomizedTwigEnvironment extends Twig_Environment
 {
     private static $previousPrefixes = array();
 
-    public function __construct(\Twig_LoaderInterface $loader = null, $options = array())
+    public function __construct(Twig_LoaderInterface $loader = null, $options = array())
     {
         parent::__construct($loader, $options);
 

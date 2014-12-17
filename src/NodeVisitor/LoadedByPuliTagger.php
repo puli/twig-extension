@@ -12,9 +12,13 @@
 namespace Puli\Extension\Twig\NodeVisitor;
 
 use Puli\Extension\Twig\Node\LoadedByPuliNode;
+use Twig_Environment;
+use Twig_Node_Module;
+use Twig_NodeInterface;
+use Twig_NodeVisitorInterface;
 
 /**
- * Adds the "puli" attribute to all {@link \Twig_Module} nodes that were loaded
+ * Adds the "puli" attribute to all {@link Twig_Module} nodes that were loaded
  * through the Puli loader.
  *
  * For these nodes, it is guaranteed that the "filename" attribute is a Puli
@@ -23,24 +27,24 @@ use Puli\Extension\Twig\Node\LoadedByPuliNode;
  * @since  1.0
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-class LoadedByPuliTagger implements \Twig_NodeVisitorInterface
+class LoadedByPuliTagger implements Twig_NodeVisitorInterface
 {
     /**
-     * @var \Twig_Node_Module|null
+     * @var Twig_Node_Module|null
      */
     private $moduleNode;
 
     /**
      * Called before child nodes are visited.
      *
-     * @param \Twig_NodeInterface $node The node to visit
-     * @param \Twig_Environment   $env  The Twig environment instance
+     * @param Twig_NodeInterface $node The node to visit
+     * @param Twig_Environment   $env  The Twig environment instance
      *
-     * @return \Twig_NodeInterface The modified node
+     * @return Twig_NodeInterface The modified node
      */
-    public function enterNode(\Twig_NodeInterface $node, \Twig_Environment $env)
+    public function enterNode(Twig_NodeInterface $node, Twig_Environment $env)
     {
-        if ($node instanceof \Twig_Node_Module) {
+        if ($node instanceof Twig_Node_Module) {
             $this->moduleNode = $node;
         }
 
@@ -50,12 +54,12 @@ class LoadedByPuliTagger implements \Twig_NodeVisitorInterface
     /**
      * Called after child nodes are visited.
      *
-     * @param \Twig_NodeInterface $node The node to visit
-     * @param \Twig_Environment   $env  The Twig environment instance
+     * @param Twig_NodeInterface $node The node to visit
+     * @param Twig_Environment   $env  The Twig environment instance
      *
-     * @return \Twig_NodeInterface|false The modified node or false if the node must be removed
+     * @return Twig_NodeInterface|false The modified node or false if the node must be removed
      */
-    public function leaveNode(\Twig_NodeInterface $node, \Twig_Environment $env)
+    public function leaveNode(Twig_NodeInterface $node, Twig_Environment $env)
     {
         // Tag the node if it contains a LoadedByPuliNode
         // This cannot be done in enterNode(), because only leaveNode() may
