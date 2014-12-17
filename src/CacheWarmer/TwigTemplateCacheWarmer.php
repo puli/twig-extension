@@ -11,10 +11,10 @@
 
 namespace Puli\Extension\Twig\CacheWarmer;
 
-use Puli\Repository\Resource\Iterator\RecursiveResourceIterator;
+use Puli\Repository\Resource\Iterator\RecursiveResourceIteratorIterator;
 use Puli\Repository\Resource\Iterator\ResourceCollectionIterator;
 use Puli\Repository\Resource\Iterator\ResourceFilterIterator;
-use Puli\Repository\ResourceRepositoryInterface;
+use Puli\Repository\ResourceRepository;
 use Symfony\Component\HttpKernel\CacheWarmer\CacheWarmerInterface;
 
 /**
@@ -25,7 +25,7 @@ use Symfony\Component\HttpKernel\CacheWarmer\CacheWarmerInterface;
 class TwigTemplateCacheWarmer implements CacheWarmerInterface
 {
     /**
-     * @var ResourceRepositoryInterface
+     * @var ResourceRepository
      */
     private $repo;
 
@@ -39,7 +39,7 @@ class TwigTemplateCacheWarmer implements CacheWarmerInterface
      */
     private $twig;
 
-    public function __construct(ResourceRepositoryInterface $repo, \Twig_Environment $twig, $suffix = '.twig')
+    public function __construct(ResourceRepository $repo, \Twig_Environment $twig, $suffix = '.twig')
     {
         $this->repo = $repo;
         $this->suffix = $suffix;
@@ -56,12 +56,12 @@ class TwigTemplateCacheWarmer implements CacheWarmerInterface
     public function warmUp($cacheDir)
     {
         $iterator = new ResourceFilterIterator(
-            new RecursiveResourceIterator(
+            new RecursiveResourceIteratorIterator(
                 new ResourceCollectionIterator(
                     $this->repo->get('/')->listEntries(),
                     ResourceCollectionIterator::CURRENT_AS_PATH
                 ),
-                RecursiveResourceIterator::SELF_FIRST
+                RecursiveResourceIteratorIterator::SELF_FIRST
             ),
             $this->suffix,
             ResourceFilterIterator::FILTER_BY_NAME | ResourceFilterIterator::MATCH_SUFFIX

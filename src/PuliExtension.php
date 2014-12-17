@@ -14,7 +14,7 @@ namespace Puli\Extension\Twig;
 use Puli\Extension\Twig\NodeVisitor\LoadedByPuliTagger;
 use Puli\Extension\Twig\NodeVisitor\TemplatePathResolver;
 use Puli\Extension\Twig\TokenParser\LoadedByPuliTokenParser;
-use Puli\Repository\ResourceRepositoryInterface;
+use Puli\Repository\ResourceRepository;
 
 /**
  * @since  1.0
@@ -39,11 +39,11 @@ class PuliExtension extends \Twig_Extension
     const POST_RESOLVE_PATHS = 6;
 
     /**
-     * @var ResourceRepositoryInterface
+     * @var ResourceRepository
      */
     private $repo;
 
-    public function __construct(ResourceRepositoryInterface $repo)
+    public function __construct(ResourceRepository $repo)
     {
         $this->repo = $repo;
     }

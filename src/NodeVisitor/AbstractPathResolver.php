@@ -12,7 +12,7 @@
 namespace Puli\Extension\Twig\NodeVisitor;
 
 use Puli\Extension\Twig\PathResolverInterface;
-use Puli\Repository\ResourceRepositoryInterface;
+use Puli\Repository\ResourceRepository;
 use Webmozart\PathUtil\Path;
 
 /**
@@ -22,7 +22,7 @@ use Webmozart\PathUtil\Path;
 abstract class AbstractPathResolver implements \Twig_NodeVisitorInterface, PathResolverInterface
 {
     /**
-     * @var ResourceRepositoryInterface
+     * @var ResourceRepository
      */
     protected $repo;
 
@@ -31,7 +31,7 @@ abstract class AbstractPathResolver implements \Twig_NodeVisitorInterface, PathR
      */
     protected $currentDir;
 
-    public function __construct(ResourceRepositoryInterface $repo)
+    public function __construct(ResourceRepository $repo)
     {
         $this->repo = $repo;
     }

@@ -12,9 +12,9 @@
 namespace Puli\Extension\Twig;
 
 use Puli\Repository\InvalidPathException;
-use Puli\Repository\Resource\FileResourceInterface;
+use Puli\Repository\Resource\FileResource;
 use Puli\Repository\ResourceNotFoundException;
-use Puli\Repository\ResourceRepositoryInterface;
+use Puli\Repository\ResourceRepository;
 
 /**
  * @since  1.0
@@ -24,7 +24,7 @@ class PuliTemplateLoader implements \Twig_LoaderInterface
 {
     private $repo;
 
-    public function __construct(ResourceRepositoryInterface $repo)
+    public function __construct(ResourceRepository $repo)
     {
         $this->repo = $repo;
     }
@@ -43,7 +43,7 @@ class PuliTemplateLoader implements \Twig_LoaderInterface
         try {
             $file = $this->repo->get($path);
 
-            if (!$file instanceof FileResourceInterface) {
+            if (!$file instanceof FileResource) {
                 throw new \Twig_Error_Loader(sprintf(
                     'Can only load file resources. Resource "%s" is of type %s.',
                     $path,
@@ -96,8 +96,8 @@ class PuliTemplateLoader implements \Twig_LoaderInterface
     /**
      * Returns true if the template is still fresh.
      *
-     * @param string    $path The template name
-     * @param timestamp $time The last modification time of the cached template
+     * @param string $path The template name
+     * @param int    $time The last modification time of the cached template
      *
      * @return Boolean true if the template is fresh, false otherwise
      *
@@ -108,7 +108,7 @@ class PuliTemplateLoader implements \Twig_LoaderInterface
         try {
             $file = $this->repo->get($path);
 
-            if (!$file instanceof FileResourceInterface) {
+            if (!$file instanceof FileResource) {
                 throw new \Twig_Error_Loader(sprintf(
                     'Can only load file resources. Resource "%s" is of type %s.',
                     $path,

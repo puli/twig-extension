@@ -13,7 +13,7 @@ namespace Puli\Extension\Twig\Tests;
 
 use Puli\Extension\Twig\PuliExtension;
 use Puli\Extension\Twig\PuliTemplateLoader;
-use Puli\Repository\ResourceRepository;
+use Puli\Repository\InMemoryRepository;
 
 /**
  * @since  1.0
@@ -27,13 +27,13 @@ class PuliExtensionTest extends \PHPUnit_Framework_TestCase
     private $twig;
 
     /**
-     * @var ResourceRepository
+     * @var InMemoryRepository
      */
     private $repo;
 
     protected function setUp()
     {
-        $this->repo = new ResourceRepository();
+        $this->repo = new InMemoryRepository();
         $this->repo->add('/acme/blog/views', __DIR__.'/Fixtures/puli');
 
         $this->twig = new RandomizedTwigEnvironment(new \Twig_Loader_Chain(array(
