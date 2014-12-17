@@ -17,7 +17,7 @@ namespace Puli\Extension\Twig;
  * @since  1.0
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-interface PathResolverInterface
+interface PathResolver
 {
     /**
      * Resolves a path depending on the current directory.
