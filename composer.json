@@ -1,6 +1,7 @@
 {
     "name": "puli/twig-extension",
     "description": "A Puli extension for the Twig templating system.",
+    "homepage": "http://puli.io",
     "license": "MIT",
     "authors": [
         {
