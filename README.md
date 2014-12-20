@@ -56,8 +56,8 @@ All contents of this package are licensed under the [MIT license].
 [The Community Contributors]: https://github.com/puli/twig-extension/graphs/contributors
 [Twig templating engine]: http://twig.sensiolabs.org
 [Puli]: https://github.com/puli/puli
-[Loading Twig Templates with Puli]: http://puli.readthedocs.org/en/latest/extensions/twig.html
-[Puli at a Glance]: http://puli.readthedocs.org/en/latest/at-a-glance.html
+[Loading Twig Templates with Puli]: http://docs.puli.io/en/latest/extensions/twig.html
+[Puli at a Glance]: http://docs.puli.io/en/latest/at-a-glance.html
 [issue tracker]: https://github.com/puli/puli/issues
 [Git repository]: https://github.com/puli/twig-extension
 [@webmozart]: https://twitter.com/webmozart
