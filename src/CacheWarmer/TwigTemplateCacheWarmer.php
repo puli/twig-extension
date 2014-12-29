@@ -11,10 +11,10 @@
 
 namespace Puli\Extension\Twig\CacheWarmer;
 
+use Puli\Repository\Api\ResourceRepository;
 use Puli\Repository\Resource\Iterator\RecursiveResourceIteratorIterator;
 use Puli\Repository\Resource\Iterator\ResourceCollectionIterator;
 use Puli\Repository\Resource\Iterator\ResourceFilterIterator;
-use Puli\Repository\ResourceRepository;
 use RuntimeException;
 use Symfony\Component\HttpKernel\CacheWarmer\CacheWarmerInterface;
 use Twig_Environment;
@@ -61,7 +61,7 @@ class TwigTemplateCacheWarmer implements CacheWarmerInterface
         $iterator = new ResourceFilterIterator(
             new RecursiveResourceIteratorIterator(
                 new ResourceCollectionIterator(
-                    $this->repo->get('/')->listEntries(),
+                    $this->repo->get('/')->listChildren(),
                     ResourceCollectionIterator::CURRENT_AS_PATH
                 ),
                 RecursiveResourceIteratorIterator::SELF_FIRST

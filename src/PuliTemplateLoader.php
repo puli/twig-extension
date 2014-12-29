@@ -11,10 +11,10 @@
 
 namespace Puli\Extension\Twig;
 
-use Puli\Repository\InvalidPathException;
-use Puli\Repository\Resource\FileResource;
-use Puli\Repository\ResourceNotFoundException;
-use Puli\Repository\ResourceRepository;
+use InvalidArgumentException;
+use Puli\Repository\Api\Resource\BodyResource;
+use Puli\Repository\Api\ResourceNotFoundException;
+use Puli\Repository\Api\ResourceRepository;
 use Twig_Error_Loader;
 use Twig_LoaderInterface;
 
@@ -45,7 +45,7 @@ class PuliTemplateLoader implements Twig_LoaderInterface
         try {
             $file = $this->repo->get($path);
 
-            if (!$file instanceof FileResource) {
+            if (!$file instanceof BodyResource) {
                 throw new Twig_Error_Loader(sprintf(
                     'Can only load file resources. Resource "%s" is of type %s.',
                     $path,
@@ -59,10 +59,10 @@ class PuliTemplateLoader implements Twig_LoaderInterface
             // templates. The "loaded_by_puli" tag is removed early on by the
             // LoadedByPuliTagger visitor and does not appear in the final
             // output.
-            return "{% loaded_by_puli %}".$file->getContents();
+            return "{% loaded_by_puli %}".$file->getBody();
         } catch (ResourceNotFoundException $e) {
             throw new Twig_Error_Loader($e->getMessage(), -1, null, $e);
-        } catch (InvalidPathException $e) {
+        } catch (InvalidArgumentException $e) {
             throw new Twig_Error_Loader($e->getMessage(), -1, null, $e);
         }
     }
@@ -90,7 +90,7 @@ class PuliTemplateLoader implements Twig_LoaderInterface
             return '__puli__'.$this->repo->get($path)->getPath();
         } catch (ResourceNotFoundException $e) {
             throw new Twig_Error_Loader($e->getMessage(), -1, null, $e);
-        } catch (InvalidPathException $e) {
+        } catch (InvalidArgumentException $e) {
             throw new Twig_Error_Loader($e->getMessage(), -1, null, $e);
         }
     }
@@ -110,7 +110,7 @@ class PuliTemplateLoader implements Twig_LoaderInterface
         try {
             $file = $this->repo->get($path);
 
-            if (!$file instanceof FileResource) {
+            if (!$file instanceof BodyResource) {
                 throw new Twig_Error_Loader(sprintf(
                     'Can only load file resources. Resource "%s" is of type %s.',
                     $path,
@@ -118,10 +118,10 @@ class PuliTemplateLoader implements Twig_LoaderInterface
                 ));
             }
 
-            return $file->getLastModifiedAt() <= $time;
+            return $file->getMetadata()->getModificationTime() <= $time;
         } catch (ResourceNotFoundException $e) {
             throw new Twig_Error_Loader($e->getMessage(), -1, null, $e);
-        } catch (InvalidPathException $e) {
+        } catch (InvalidArgumentException $e) {
             throw new Twig_Error_Loader($e->getMessage(), -1, null, $e);
         }
     }

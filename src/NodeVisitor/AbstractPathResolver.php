@@ -12,7 +12,7 @@
 namespace Puli\Extension\Twig\NodeVisitor;
 
 use Puli\Extension\Twig\PathResolver;
-use Puli\Repository\ResourceRepository;
+use Puli\Repository\Api\ResourceRepository;
 use Twig_Environment;
 use Twig_Node_Module;
 use Twig_NodeInterface;
