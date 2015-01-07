@@ -13,6 +13,8 @@ namespace Puli\Extension\Twig\NodeVisitor;
 
 use Puli\Extension\Twig\Node\LoadedByPuliNode;
 use Twig_Environment;
+use Twig_Node;
+use Twig_Node_Body;
 use Twig_Node_Module;
 use Twig_NodeInterface;
 use Twig_NodeVisitorInterface;
@@ -71,6 +73,15 @@ class LoadedByPuliTagger implements Twig_NodeVisitorInterface
 
             // Remove that node from the final tree
             return false;
+        }
+
+        // Special case: Empty files that contained only the LoadedByPuliNode
+        // now contain no nodes anymore. Twig, however, expects Twig_Node_Body
+        // instances to have at least one (even if empty) node with name 0.
+        if ($node instanceof Twig_Node_Body) {
+            if (0 === $node->count()) {
+                $node->setNode(0, new Twig_Node(array(), array(), 1));
+            }
         }
 
         return $node;

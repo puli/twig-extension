@@ -55,6 +55,14 @@ class PuliExtensionTest extends PHPUnit_Framework_TestCase
         );
     }
 
+    public function testRenderEmpty()
+    {
+        $this->assertSame(
+            "",
+            $this->twig->render('/acme/blog/views/empty.txt.twig')
+        );
+    }
+
     public function testExtendAbsolutePath()
     {
         $this->assertSame(
