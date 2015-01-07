@@ -15,6 +15,7 @@ use PHPUnit_Framework_TestCase;
 use Puli\Extension\Twig\PuliExtension;
 use Puli\Extension\Twig\PuliTemplateLoader;
 use Puli\Repository\InMemoryRepository;
+use Puli\Repository\Resource\DirectoryResource;
 use Twig_Loader_Chain;
 use Twig_Loader_Filesystem;
 
@@ -37,7 +38,7 @@ class PuliExtensionTest extends PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->repo = new InMemoryRepository();
-        $this->repo->add('/acme/blog/views', __DIR__.'/Fixtures/puli');
+        $this->repo->add('/acme/blog/views', new DirectoryResource(__DIR__.'/Fixtures/puli'));
 
         $this->twig = new RandomizedTwigEnvironment(new Twig_Loader_Chain(array(
             new PuliTemplateLoader($this->repo),

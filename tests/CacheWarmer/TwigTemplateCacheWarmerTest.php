@@ -14,6 +14,7 @@ namespace Puli\Extension\Twig\Tests\CacheWarmer;
 use PHPUnit_Framework_TestCase;
 use Puli\Extension\Twig\CacheWarmer\TwigTemplateCacheWarmer;
 use Puli\Repository\InMemoryRepository;
+use Puli\Repository\Resource\DirectoryResource;
 
 /**
  * @since  1.0
@@ -24,7 +25,7 @@ class TwigTemplateCacheWarmerTest extends PHPUnit_Framework_TestCase
     public function testWarmUp()
     {
         $repo = new InMemoryRepository();
-        $repo->add('/webmozart/puli', __DIR__.'/Fixtures');
+        $repo->add('/webmozart/puli', new DirectoryResource(__DIR__.'/Fixtures'));
 
         $twig = $this->getMock('Twig_Environment');
 
