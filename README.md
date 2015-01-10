@@ -55,10 +55,10 @@ All contents of this package are licensed under the [MIT license].
 [Bernhard Schussek]: http://webmozarts.com
 [The Community Contributors]: https://github.com/puli/twig-extension/graphs/contributors
 [Twig templating engine]: http://twig.sensiolabs.org
-[Puli]: https://github.com/puli/puli
+[Puli]: http://puli.io
 [Loading Twig Templates with Puli]: http://docs.puli.io/en/latest/extensions/twig.html
 [Puli at a Glance]: http://docs.puli.io/en/latest/at-a-glance.html
-[issue tracker]: https://github.com/puli/puli/issues
+[issue tracker]: https://github.com/puli/issues/issues
 [Git repository]: https://github.com/puli/twig-extension
 [@webmozart]: https://twitter.com/webmozart
 [MIT license]: LICENSE
