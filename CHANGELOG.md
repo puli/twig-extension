@@ -1,9 +1,10 @@
 Changelog
 =========
 
-* 1.0.0-alpha2 (@release_date@)
+* 1.0.0-beta (2015-01-12)
 
  * Renamed `PathResolverInterface` to `PathResolver`
+ * Fixed rendering of empty templates. Closes puli/puli#28
 
 * 1.0.0-alpha1 (2014-12-03)
 
