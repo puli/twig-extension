@@ -1,14 +1,14 @@
 Puli Extension for Twig
 =======================
 
-[![Build Status](https://travis-ci.org/puli/twig-extension.png?branch=master)](https://travis-ci.org/puli/twig-extension)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/puli/twig-extension/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/puli/twig-extension/?branch=master)
+[![Build Status](https://travis-ci.org/puli/twig-extension.png?branch=1.0.0-beta)](https://travis-ci.org/puli/twig-extension)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/puli/twig-extension/badges/quality-score.png?b=1.0.0-beta)](https://scrutinizer-ci.com/g/puli/twig-extension/?branch=1.0.0-beta)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/63fa6b60-7f9c-4a47-ab76-db0e259f9075/mini.png)](https://insight.sensiolabs.com/projects/63fa6b60-7f9c-4a47-ab76-db0e259f9075)
 [![Latest Stable Version](https://poser.pugx.org/puli/twig-extension/v/stable.png)](https://packagist.org/packages/puli/twig-extension)
 [![Total Downloads](https://poser.pugx.org/puli/twig-extension/downloads.png)](https://packagist.org/packages/puli/twig-extension)
 [![Dependency Status](https://www.versioneye.com/php/puli:twig-extension/1.0.0/badge.png)](https://www.versioneye.com/php/puli:twig-extension/1.0.0)
 
-Latest release: [1.0.0-alpha1](https://packagist.org/packages/puli/twig-extension#1.0.0-alpha1)
+Latest release: [1.0.0-beta](https://packagist.org/packages/puli/twig-extension#1.0.0-beta)
 
 PHP >= 5.3.9
 

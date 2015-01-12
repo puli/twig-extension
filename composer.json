@@ -18,7 +18,7 @@
     "require-dev": {
         "symfony/http-kernel": "~2.3"
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "beta",
     "suggest": {
         "symfony/http-kernel": "The Twig extension provides a cache warmer for Symfony's HttpKernel component."
     },
