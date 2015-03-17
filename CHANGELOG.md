@@ -1,6 +1,10 @@
 Changelog
 =========
 
+* 1.0.0-next (@release_date@)
+
+ * Added `resource_url()` function
+
 * 1.0.0-beta (2015-01-12)
 
  * Renamed `PathResolverInterface` to `PathResolver`

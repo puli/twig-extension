@@ -13,6 +13,7 @@ namespace Puli\Extension\Twig\NodeVisitor;
 
 use Puli\Extension\Twig\PuliExtension;
 use Twig_Node_Expression_Constant;
+use Twig_Node_Expression_Function;
 use Twig_Node_Include;
 use Twig_Node_Module;
 use Twig_NodeInterface;
@@ -64,6 +65,16 @@ class TemplatePathResolver extends AbstractPathResolver
 
             if ($exprNode instanceof Twig_Node_Expression_Constant) {
                 $this->processConstantNode($exprNode);
+            }
+        } elseif ($node instanceof Twig_Node_Expression_Function && 'resource_url' === $node->getAttribute('name')) {
+            $argsNode = $node->getNode('arguments');
+
+            if ($argsNode->hasNode(0)) {
+                $exprNode = $argsNode->getNode(0);
+
+                if ($exprNode instanceof Twig_Node_Expression_Constant) {
+                    $this->processConstantNode($exprNode);
+                }
             }
         }
     }

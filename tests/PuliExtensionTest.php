@@ -11,11 +11,14 @@
 
 namespace Puli\Extension\Twig\Tests;
 
+use PHPUnit_Framework_MockObject_MockObject;
 use PHPUnit_Framework_TestCase;
 use Puli\Extension\Twig\PuliExtension;
 use Puli\Extension\Twig\PuliTemplateLoader;
 use Puli\Repository\InMemoryRepository;
 use Puli\Repository\Resource\DirectoryResource;
+use Puli\Repository\Resource\GenericResource;
+use Puli\WebResourcePlugin\Api\UrlGenerator\ResourceUrlGenerator;
 use Twig_Loader_Chain;
 use Twig_Loader_Filesystem;
 
@@ -35,16 +38,24 @@ class PuliExtensionTest extends PHPUnit_Framework_TestCase
      */
     private $repo;
 
+    /**
+     * @var PHPUnit_Framework_MockObject_MockObject|ResourceUrlGenerator
+     */
+    private $urlGenerator;
+
     protected function setUp()
     {
         $this->repo = new InMemoryRepository();
         $this->repo->add('/acme/blog/views', new DirectoryResource(__DIR__.'/Fixtures/puli'));
+        $this->repo->add('/acme/blog/css/style.css', new GenericResource());
+
+        $this->urlGenerator = $this->getMock('Puli\WebResourcePlugin\Api\UrlGenerator\ResourceUrlGenerator');
 
         $this->twig = new RandomizedTwigEnvironment(new Twig_Loader_Chain(array(
             new PuliTemplateLoader($this->repo),
             new Twig_Loader_Filesystem(__DIR__.'/Fixtures'),
         )));
-        $this->twig->addExtension(new PuliExtension($this->repo));
+        $this->twig->addExtension(new PuliExtension($this->repo, $this->urlGenerator));
     }
 
     public function testRender()
@@ -159,5 +170,31 @@ class PuliExtensionTest extends PHPUnit_Framework_TestCase
     public function testIncludeWhichExtendsRelativePathNonPuli()
     {
         $this->twig->render('/non-puli/include-extend-relative.txt.twig');
+    }
+
+    public function testRenderUrlForAbsolutePath()
+    {
+        $this->urlGenerator->expects($this->once())
+            ->method('generateUrl')
+            ->with('/acme/blog/css/style.css')
+            ->willReturn('/blog/css/style.css');
+
+        $this->assertSame(
+            "/blog/css/style.css\n",
+            $this->twig->render('/acme/blog/views/resource-url-absolute.txt.twig')
+        );
+    }
+
+    public function testRenderUrlForRelativePath()
+    {
+        $this->urlGenerator->expects($this->once())
+            ->method('generateUrl')
+            ->with('/acme/blog/css/style.css')
+            ->willReturn('/blog/css/style.css');
+
+        $this->assertSame(
+            "/blog/css/style.css\n",
+            $this->twig->render('/acme/blog/views/resource-url-relative.txt.twig')
+        );
     }
 }

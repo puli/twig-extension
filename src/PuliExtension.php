@@ -15,8 +15,9 @@ use Puli\Extension\Twig\NodeVisitor\LoadedByPuliTagger;
 use Puli\Extension\Twig\NodeVisitor\TemplatePathResolver;
 use Puli\Extension\Twig\TokenParser\LoadedByPuliTokenParser;
 use Puli\Repository\Api\ResourceRepository;
+use Puli\WebResourcePlugin\Api\UrlGenerator\ResourceUrlGenerator;
 use Twig_Extension;
-use Twig_NodeVisitorInterface;
+use Twig_SimpleFunction;
 
 /**
  * @since  1.0
@@ -45,9 +46,15 @@ class PuliExtension extends Twig_Extension
      */
     private $repo;
 
-    public function __construct(ResourceRepository $repo)
+    /**
+     * @var ResourceUrlGenerator
+     */
+    private $urlGenerator;
+
+    public function __construct(ResourceRepository $repo, ResourceUrlGenerator $urlGenerator = null)
     {
         $this->repo = $repo;
+        $this->urlGenerator = $urlGenerator;
     }
 
     /**
@@ -61,9 +68,7 @@ class PuliExtension extends Twig_Extension
     }
 
     /**
-     * Returns the node visitor instances to add to the existing list.
-     *
-     * @return Twig_NodeVisitorInterface[] An array of Twig_NodeVisitorInterface instances
+     * {@inheritdoc}
      */
     public function getNodeVisitors()
     {
@@ -74,13 +79,24 @@ class PuliExtension extends Twig_Extension
     }
 
     /**
-     * Returns the token parser instances to add to the existing list.
-     *
-     * @return array An array of Twig_TokenParserInterface or Twig_TokenParserBrokerInterface instances
+     * {@inheritdoc}
      */
     public function getTokenParsers()
     {
         return array(new LoadedByPuliTokenParser());
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function getFunctions()
+    {
+        if (!$this->urlGenerator) {
+            return array();
+        }
+
+        return array(
+            new Twig_SimpleFunction('resource_url', array($this->urlGenerator, 'generateUrl')),
+        );
+    }
 }
