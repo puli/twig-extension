@@ -19,7 +19,7 @@
         "puli/web-resource-plugin": "~1.0",
         "symfony/http-kernel": "~2.3"
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "beta",
     "suggest": {
         "puli/web-resource-plugin": "Enables the resource() function"
     },
