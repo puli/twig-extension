@@ -124,6 +124,22 @@ class PuliExtensionTest extends PHPUnit_Framework_TestCase
         );
     }
 
+    public function testImportAbsolutePath()
+    {
+        $this->assertSame(
+            "TEMPLATE\n\nPULI MACRO\n",
+            $this->twig->render('/acme/blog/views/import-absolute.txt.twig')
+        );
+    }
+
+    public function testImportRelativePath()
+    {
+        $this->assertSame(
+            "TEMPLATE\n\nPULI MACRO\n",
+            $this->twig->render('/acme/blog/views/import-relative.txt.twig')
+        );
+    }
+
     public function testEmbedAbsolutePath()
     {
         $this->assertSame(

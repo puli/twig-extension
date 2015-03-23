@@ -14,6 +14,7 @@ namespace Puli\Extension\Twig\NodeVisitor;
 use Puli\Extension\Twig\PuliExtension;
 use Twig_Node_Expression_Constant;
 use Twig_Node_Expression_Function;
+use Twig_Node_Import;
 use Twig_Node_Include;
 use Twig_Node_Module;
 use Twig_NodeInterface;
@@ -60,7 +61,7 @@ class TemplatePathResolver extends AbstractPathResolver
                     $this->processConstantNode($embedParent);
                 }
             }
-        } elseif ($node instanceof Twig_Node_Include) {
+        } elseif ($node instanceof Twig_Node_Include || $node instanceof Twig_Node_Import) {
             $exprNode = $node->getNode('expr');
 
             if ($exprNode instanceof Twig_Node_Expression_Constant) {
