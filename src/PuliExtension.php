@@ -74,7 +74,7 @@ class PuliExtension extends Twig_Extension
     {
         return array(
             new LoadedByPuliTagger(),
-            new TemplatePathResolver($this->repo)
+            new TemplatePathResolver($this->repo, $this->urlGenerator)
         );
     }
 

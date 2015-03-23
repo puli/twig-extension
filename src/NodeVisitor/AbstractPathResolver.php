@@ -74,7 +74,9 @@ abstract class AbstractPathResolver implements Twig_NodeVisitorInterface, PathRe
     {
         // Only process if the current directory was set
         if (null !== $this->currentDir) {
-            $this->processNode($node);
+            if ($result = $this->processNode($node)) {
+                $node = $result;
+            }
         }
 
         return $node;

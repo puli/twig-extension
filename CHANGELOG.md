@@ -5,6 +5,7 @@ Changelog
 
  * Added support for relative paths in `import` statements
  * Added support for relative paths in `use` statements
+ * Calls to `resource_url()` are now optimized away during compilation
 
 * 1.0.0-beta2 (2015-03-19)
 
