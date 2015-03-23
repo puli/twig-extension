@@ -3,7 +3,8 @@ Changelog
 
 * 1.0.0-next (@release_date@)
 
- * Added support for relative paths in `import` statement
+ * Added support for relative paths in `import` statements
+ * Added support for relative paths in `use` statements
 
 * 1.0.0-beta2 (2015-03-19)
 

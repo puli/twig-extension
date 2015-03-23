@@ -12,6 +12,7 @@
 namespace Puli\Extension\Twig\NodeVisitor;
 
 use Puli\Extension\Twig\PuliExtension;
+use Twig_Node;
 use Twig_Node_Expression_Constant;
 use Twig_Node_Expression_Function;
 use Twig_Node_Import;
@@ -45,6 +46,7 @@ class TemplatePathResolver extends AbstractPathResolver
         if ($node instanceof Twig_Node_Module) {
             // Resolve relative parent template paths to absolute paths
             $parentNode = $node->getNode('parent');
+            $traitsNode = $node->getNode('traits');
 
             // If the template extends another template, resolve the path
             if ($parentNode instanceof Twig_Node_Expression_Constant) {
@@ -59,6 +61,17 @@ class TemplatePathResolver extends AbstractPathResolver
                 // If the template extends another template, resolve the path
                 if ($embedParent instanceof Twig_Node_Expression_Constant) {
                     $this->processConstantNode($embedParent);
+                }
+            }
+
+            // Resolve paths of used templates
+            foreach ($traitsNode as $traitNode) {
+                /** @var Twig_Node $traitNode */
+                $usedTemplate = $traitNode->getNode('template');
+
+                // If the template extends another template, resolve the path
+                if ($usedTemplate instanceof Twig_Node_Expression_Constant) {
+                    $this->processConstantNode($usedTemplate);
                 }
             }
         } elseif ($node instanceof Twig_Node_Include || $node instanceof Twig_Node_Import) {

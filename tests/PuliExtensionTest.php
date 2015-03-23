@@ -140,6 +140,22 @@ class PuliExtensionTest extends PHPUnit_Framework_TestCase
         );
     }
 
+    public function testUseAbsolutePath()
+    {
+        $this->assertSame(
+            "PARENT\n\nUSED PULI BLOCK\n",
+            $this->twig->render('/acme/blog/views/use-absolute.txt.twig')
+        );
+    }
+
+    public function testUseRelativePath()
+    {
+        $this->assertSame(
+            "PARENT\n\nUSED PULI BLOCK\n",
+            $this->twig->render('/acme/blog/views/use-relative.txt.twig')
+        );
+    }
+
     public function testEmbedAbsolutePath()
     {
         $this->assertSame(
