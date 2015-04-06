@@ -11,11 +11,11 @@
 
 namespace Puli\Extension\Twig;
 
+use Puli\AssetPlugin\Api\UrlGenerator\ResourceUrlGenerator;
 use Puli\Extension\Twig\NodeVisitor\LoadedByPuliTagger;
 use Puli\Extension\Twig\NodeVisitor\TemplatePathResolver;
 use Puli\Extension\Twig\TokenParser\LoadedByPuliTokenParser;
 use Puli\Repository\Api\ResourceRepository;
-use Puli\WebResourcePlugin\Api\UrlGenerator\ResourceUrlGenerator;
 use Twig_Extension;
 use Twig_SimpleFunction;
 

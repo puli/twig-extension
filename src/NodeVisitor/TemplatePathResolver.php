@@ -11,9 +11,9 @@
 
 namespace Puli\Extension\Twig\NodeVisitor;
 
+use Puli\AssetPlugin\Api\UrlGenerator\ResourceUrlGenerator;
 use Puli\Extension\Twig\PuliExtension;
 use Puli\Repository\Api\ResourceRepository;
-use Puli\WebResourcePlugin\Api\UrlGenerator\ResourceUrlGenerator;
 use RuntimeException;
 use Twig_Node;
 use Twig_Node_Expression_Constant;
