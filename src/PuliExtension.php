@@ -96,7 +96,7 @@ class PuliExtension extends Twig_Extension
         }
 
         return array(
-            new Twig_SimpleFunction('resource_url', array($this->urlGenerator, 'generateUrl')),
+            new Twig_SimpleFunction('asset_url', array($this->urlGenerator, 'generateUrl')),
         );
     }
 }

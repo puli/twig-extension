@@ -213,7 +213,7 @@ class PuliExtensionTest extends PHPUnit_Framework_TestCase
 
         $this->assertSame(
             "/blog/css/style.css\n",
-            $this->twig->render('/acme/blog/views/resource-url-absolute.txt.twig')
+            $this->twig->render('/acme/blog/views/asset-url-absolute.txt.twig')
         );
     }
 
@@ -226,7 +226,7 @@ class PuliExtensionTest extends PHPUnit_Framework_TestCase
 
         $this->assertSame(
             "/blog/css/style.css\n",
-            $this->twig->render('/acme/blog/views/resource-url-relative.txt.twig')
+            $this->twig->render('/acme/blog/views/asset-url-relative.txt.twig')
         );
     }
 }

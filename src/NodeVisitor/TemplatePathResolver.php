@@ -70,8 +70,8 @@ class TemplatePathResolver extends AbstractPathResolver
             return $this->processImportNode($node);
         }
 
-        if ($node instanceof Twig_Node_Expression_Function && 'resource_url' === $node->getAttribute('name')) {
-            return $this->processResourceUrlFunction($node);
+        if ($node instanceof Twig_Node_Expression_Function && 'asset_url' === $node->getAttribute('name')) {
+            return $this->processAssetUrlFunction($node);
         }
 
         return null;
@@ -143,7 +143,7 @@ class TemplatePathResolver extends AbstractPathResolver
         return null;
     }
 
-    protected function processResourceUrlFunction(Twig_Node $node)
+    protected function processAssetUrlFunction(Twig_Node $node)
     {
         if (!$this->urlGenerator) {
             throw new RuntimeException(
