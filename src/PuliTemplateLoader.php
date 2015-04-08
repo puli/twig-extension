@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Puli\Extension\Twig;
+namespace Puli\TwigExtension;
 
 use InvalidArgumentException;
 use Puli\Repository\Api\Resource\BodyResource;

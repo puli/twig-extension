@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Puli\Extension\Twig\NodeVisitor;
+namespace Puli\TwigExtension\NodeVisitor;
 
 use Puli\AssetPlugin\Api\UrlGenerator\AssetUrlGenerator;
-use Puli\Extension\Twig\PuliExtension;
 use Puli\Repository\Api\ResourceRepository;
+use Puli\TwigExtension\PuliExtension;
 use RuntimeException;
 use Twig_Node;
 use Twig_Node_Expression_Constant;

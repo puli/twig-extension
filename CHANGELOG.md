@@ -7,6 +7,7 @@ Changelog
  * Added support for relative paths in `use` statements
  * Calls to `resource_url()` are now optimized away during compilation
  * Renamed `resource_url()` to `asset_url()`
+ * Moved code to the `Puli\TwigExtension` namespace
 
 * 1.0.0-beta2 (2015-03-19)
 

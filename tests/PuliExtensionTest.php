@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Puli\Extension\Twig\Tests;
+namespace Puli\TwigExtension\Tests;
 
 use PHPUnit_Framework_MockObject_MockObject;
 use PHPUnit_Framework_TestCase;
 use Puli\AssetPlugin\Api\UrlGenerator\AssetUrlGenerator;
-use Puli\Extension\Twig\PuliExtension;
-use Puli\Extension\Twig\PuliTemplateLoader;
 use Puli\Repository\InMemoryRepository;
 use Puli\Repository\Resource\DirectoryResource;
 use Puli\Repository\Resource\GenericResource;
+use Puli\TwigExtension\PuliExtension;
+use Puli\TwigExtension\PuliTemplateLoader;
 use Twig_Loader_Chain;
 use Twig_Loader_Filesystem;
 

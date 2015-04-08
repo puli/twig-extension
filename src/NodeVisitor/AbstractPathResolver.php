@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Puli\Extension\Twig\NodeVisitor;
+namespace Puli\TwigExtension\NodeVisitor;
 
-use Puli\Extension\Twig\PathResolver;
 use Puli\Repository\Api\ResourceRepository;
+use Puli\TwigExtension\PathResolver;
 use Twig_Environment;
 use Twig_Node_Module;
 use Twig_NodeInterface;

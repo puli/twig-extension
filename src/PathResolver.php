@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Puli\Extension\Twig;
+namespace Puli\TwigExtension;
 
 /**
  * Returns a Puli path depending on a current directory.

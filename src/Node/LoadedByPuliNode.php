@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Puli\Extension\Twig\Node;
+namespace Puli\TwigExtension\Node;
 
 use Twig_Node;
 

@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Puli\Extension\Twig\TokenParser;
+namespace Puli\TwigExtension\TokenParser;
 
-use Puli\Extension\Twig\Node\LoadedByPuliNode;
+use Puli\TwigExtension\Node\LoadedByPuliNode;
 use Twig_Error_Syntax;
 use Twig_NodeInterface;
 use Twig_Token;

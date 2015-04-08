@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Puli\Extension\Twig\CacheWarmer;
+namespace Puli\TwigExtension\CacheWarmer;
 
 use Puli\Repository\Api\ResourceRepository;
 use Puli\Repository\Resource\Iterator\RecursiveResourceIteratorIterator;

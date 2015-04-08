@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Puli\Extension\Twig\Tests\CacheWarmer;
+namespace Puli\TwigExtension\Tests\CacheWarmer;
 
 use PHPUnit_Framework_TestCase;
-use Puli\Extension\Twig\CacheWarmer\TwigTemplateCacheWarmer;
 use Puli\Repository\InMemoryRepository;
 use Puli\Repository\Resource\DirectoryResource;
+use Puli\TwigExtension\CacheWarmer\TwigTemplateCacheWarmer;
 
 /**
  * @since  1.0

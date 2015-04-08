@@ -9,13 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Puli\Extension\Twig;
+namespace Puli\TwigExtension;
 
 use Puli\AssetPlugin\Api\UrlGenerator\AssetUrlGenerator;
-use Puli\Extension\Twig\NodeVisitor\LoadedByPuliTagger;
-use Puli\Extension\Twig\NodeVisitor\TemplatePathResolver;
-use Puli\Extension\Twig\TokenParser\LoadedByPuliTokenParser;
 use Puli\Repository\Api\ResourceRepository;
+use Puli\TwigExtension\NodeVisitor\LoadedByPuliTagger;
+use Puli\TwigExtension\NodeVisitor\TemplatePathResolver;
+use Puli\TwigExtension\TokenParser\LoadedByPuliTokenParser;
 use Twig_Extension;
 use Twig_SimpleFunction;
 

@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Puli\Extension\Twig\NodeVisitor;
+namespace Puli\TwigExtension\NodeVisitor;
 
-use Puli\Extension\Twig\Node\LoadedByPuliNode;
+use Puli\TwigExtension\Node\LoadedByPuliNode;
 use Twig_Environment;
 use Twig_Node;
 use Twig_Node_Body;
