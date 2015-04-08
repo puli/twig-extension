@@ -11,7 +11,7 @@
 
 namespace Puli\Extension\Twig;
 
-use Puli\AssetPlugin\Api\UrlGenerator\ResourceUrlGenerator;
+use Puli\AssetPlugin\Api\UrlGenerator\AssetUrlGenerator;
 use Puli\Extension\Twig\NodeVisitor\LoadedByPuliTagger;
 use Puli\Extension\Twig\NodeVisitor\TemplatePathResolver;
 use Puli\Extension\Twig\TokenParser\LoadedByPuliTokenParser;
@@ -47,11 +47,11 @@ class PuliExtension extends Twig_Extension
     private $repo;
 
     /**
-     * @var ResourceUrlGenerator
+     * @var AssetUrlGenerator
      */
     private $urlGenerator;
 
-    public function __construct(ResourceRepository $repo, ResourceUrlGenerator $urlGenerator = null)
+    public function __construct(ResourceRepository $repo, AssetUrlGenerator $urlGenerator = null)
     {
         $this->repo = $repo;
         $this->urlGenerator = $urlGenerator;
