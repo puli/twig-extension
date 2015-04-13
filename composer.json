@@ -11,7 +11,7 @@
     ],
     "require": {
         "php": ">=5.3.9",
-        "puli/repository": "1.0.*",
+        "puli/repository": "~1.0",
         "twig/twig": "~1.0",
         "webmozart/path-util": "~1.0"
     },
@@ -19,7 +19,7 @@
         "puli/asset-plugin": "~1.0",
         "symfony/http-kernel": "~2.3"
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "beta",
     "suggest": {
         "puli/asset-plugin": "Enables the asset_url() function"
     },
