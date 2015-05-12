@@ -13,7 +13,6 @@ namespace Puli\TwigExtension\Tests;
 
 use PHPUnit_Framework_MockObject_MockObject;
 use PHPUnit_Framework_TestCase;
-use Puli\AssetPlugin\Api\UrlGenerator\AssetUrlGenerator;
 use Puli\Repository\InMemoryRepository;
 use Puli\Repository\Resource\DirectoryResource;
 use Puli\Repository\Resource\GenericResource;
@@ -49,7 +48,7 @@ class PuliExtensionTest extends PHPUnit_Framework_TestCase
         $this->repo->add('/acme/blog/views', new DirectoryResource(__DIR__.'/Fixtures/puli'));
         $this->repo->add('/acme/blog/css/style.css', new GenericResource());
 
-        $this->urlGenerator = $this->getMock('Puli\AssetPlugin\Api\UrlGenerator\AssetUrlGenerator');
+        $this->urlGenerator = $this->getMock('Puli\UrlGenerator\Api\UrlGenerator');
 
         $this->twig = new RandomizedTwigEnvironment(new Twig_Loader_Chain(array(
             new PuliTemplateLoader($this->repo),

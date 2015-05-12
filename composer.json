@@ -16,12 +16,12 @@
         "webmozart/path-util": "~2.0"
     },
     "require-dev": {
-        "puli/asset-plugin": "~1.0",
+        "puli/url-generator": "~1.0",
         "symfony/http-kernel": "~2.3"
     },
     "minimum-stability": "dev",
     "suggest": {
-        "puli/asset-plugin": "Enables the asset_url() function"
+        "puli/url-generator": "Enables the asset_url() function"
     },
     "autoload": {
         "psr-4": {

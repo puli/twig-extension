@@ -11,9 +11,9 @@
 
 namespace Puli\TwigExtension\NodeVisitor;
 
-use Puli\AssetPlugin\Api\UrlGenerator\AssetUrlGenerator;
 use Puli\Repository\Api\ResourceRepository;
 use Puli\TwigExtension\PuliExtension;
+use Puli\UrlGenerator\Api\UrlGenerator;
 use RuntimeException;
 use Twig_Node;
 use Twig_Node_Expression_Constant;
@@ -30,11 +30,11 @@ use Twig_NodeInterface;
 class TemplatePathResolver extends AbstractPathResolver
 {
     /**
-     * @var AssetUrlGenerator
+     * @var UrlGenerator
      */
     private $urlGenerator;
 
-    public function __construct(ResourceRepository $repo, AssetUrlGenerator $urlGenerator = null)
+    public function __construct(ResourceRepository $repo, UrlGenerator $urlGenerator = null)
     {
         parent::__construct($repo);
 

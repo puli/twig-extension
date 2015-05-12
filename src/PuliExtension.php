@@ -11,11 +11,11 @@
 
 namespace Puli\TwigExtension;
 
-use Puli\AssetPlugin\Api\UrlGenerator\AssetUrlGenerator;
 use Puli\Repository\Api\ResourceRepository;
 use Puli\TwigExtension\NodeVisitor\LoadedByPuliTagger;
 use Puli\TwigExtension\NodeVisitor\TemplatePathResolver;
 use Puli\TwigExtension\TokenParser\LoadedByPuliTokenParser;
+use Puli\UrlGenerator\Api\UrlGenerator;
 use Twig_Extension;
 use Twig_SimpleFunction;
 
@@ -47,11 +47,11 @@ class PuliExtension extends Twig_Extension
     private $repo;
 
     /**
-     * @var AssetUrlGenerator
+     * @var UrlGenerator
      */
     private $urlGenerator;
 
-    public function __construct(ResourceRepository $repo, AssetUrlGenerator $urlGenerator = null)
+    public function __construct(ResourceRepository $repo, UrlGenerator $urlGenerator = null)
     {
         $this->repo = $repo;
         $this->urlGenerator = $urlGenerator;
