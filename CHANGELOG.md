@@ -5,6 +5,7 @@ Changelog
 
  * upgraded to webmozart/path-util 2.0
  * replaced puli/asset-plugin by puli/url-generator
+ * renamed `asset_url()` to `resource_url()`
 
 * 1.0.0-beta3 (2015-04-13)
 

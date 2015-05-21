@@ -70,7 +70,7 @@ class TemplatePathResolver extends AbstractPathResolver
             return $this->processImportNode($node);
         }
 
-        if ($node instanceof Twig_Node_Expression_Function && 'asset_url' === $node->getAttribute('name')) {
+        if ($node instanceof Twig_Node_Expression_Function && 'resource_url' === $node->getAttribute('name')) {
             return $this->processAssetUrlFunction($node);
         }
 
