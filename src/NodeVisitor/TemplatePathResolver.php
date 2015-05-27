@@ -34,11 +34,17 @@ class TemplatePathResolver extends AbstractPathResolver
      */
     private $urlGenerator;
 
-    public function __construct(ResourceRepository $repo, UrlGenerator $urlGenerator = null)
+    /**
+     * @var bool
+     */
+    private $checkPaths;
+
+    public function __construct(ResourceRepository $repo, UrlGenerator $urlGenerator = null, $checkPaths = false)
     {
         parent::__construct($repo);
 
         $this->urlGenerator = $urlGenerator;
+        $this->checkPaths = $checkPaths;
     }
 
     /**
@@ -71,7 +77,7 @@ class TemplatePathResolver extends AbstractPathResolver
         }
 
         if ($node instanceof Twig_Node_Expression_Function && 'resource_url' === $node->getAttribute('name')) {
-            return $this->processAssetUrlFunction($node);
+            return $this->processResourceUrlFunction($node);
         }
 
         return null;
@@ -85,7 +91,7 @@ class TemplatePathResolver extends AbstractPathResolver
 
         // If the template extends another template, resolve the path
         if ($parentNode instanceof Twig_Node_Expression_Constant) {
-            $this->processConstantNode($parentNode);
+            $this->processConstantNode($parentNode, $this->checkPaths);
         }
 
         // Resolve paths of embedded templates
@@ -107,7 +113,7 @@ class TemplatePathResolver extends AbstractPathResolver
 
         // If the template extends another template, resolve the path
         if ($embedParent instanceof Twig_Node_Expression_Constant) {
-            $this->processConstantNode($embedParent);
+            $this->processConstantNode($embedParent, $this->checkPaths);
         }
     }
 
@@ -117,7 +123,7 @@ class TemplatePathResolver extends AbstractPathResolver
 
         // If the template extends another template, resolve the path
         if ($usedTemplate instanceof Twig_Node_Expression_Constant) {
-            $this->processConstantNode($usedTemplate);
+            $this->processConstantNode($usedTemplate, $this->checkPaths);
         }
     }
 
@@ -126,7 +132,7 @@ class TemplatePathResolver extends AbstractPathResolver
         $exprNode = $node->getNode('expr');
 
         if ($exprNode instanceof Twig_Node_Expression_Constant) {
-            $this->processConstantNode($exprNode);
+            $this->processConstantNode($exprNode, $this->checkPaths);
         }
 
         return null;
@@ -137,13 +143,13 @@ class TemplatePathResolver extends AbstractPathResolver
         $exprNode = $node->getNode('expr');
 
         if ($exprNode instanceof Twig_Node_Expression_Constant) {
-            $this->processConstantNode($exprNode);
+            $this->processConstantNode($exprNode, $this->checkPaths);
         }
 
         return null;
     }
 
-    protected function processAssetUrlFunction(Twig_Node $node)
+    protected function processResourceUrlFunction(Twig_Node $node)
     {
         if (!$this->urlGenerator) {
             throw new RuntimeException(
@@ -164,7 +170,9 @@ class TemplatePathResolver extends AbstractPathResolver
             return null;
         }
 
-        $this->processConstantNode($exprNode);
+        // The paths passed to the resource_url() function must always be Puli
+        // paths, so disable path checking
+        $this->processConstantNode($exprNode, false);
 
         // Optimize away function call
         $exprNode->setAttribute('value', $this->urlGenerator->generateUrl($exprNode->getAttribute('value')));
@@ -172,8 +180,12 @@ class TemplatePathResolver extends AbstractPathResolver
         return $exprNode;
     }
 
-    private function processConstantNode(Twig_Node_Expression_Constant $node)
+    private function processConstantNode(Twig_Node_Expression_Constant $node, $checkPath)
     {
-        $node->setAttribute('value', $this->resolvePath($node->getAttribute('value'), $this->currentDir));
+        $node->setAttribute('value', $this->resolvePath(
+            $node->getAttribute('value'),
+            $this->currentDir,
+            $checkPath
+        ));
     }
 }

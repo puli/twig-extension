@@ -6,6 +6,9 @@ Changelog
  * upgraded to webmozart/path-util 2.0
  * replaced puli/asset-plugin by puli/url-generator
  * renamed `asset_url()` to `resource_url()`
+ * fixed: relative paths in `resource_url()` are always converted into absolute
+   paths
+ * removed `PathResolver` interface
 
 * 1.0.0-beta3 (2015-04-13)
 

@@ -18,6 +18,7 @@ use Puli\Repository\Resource\DirectoryResource;
 use Puli\Repository\Resource\GenericResource;
 use Puli\TwigExtension\PuliExtension;
 use Puli\TwigExtension\PuliTemplateLoader;
+use Puli\UrlGenerator\Api\UrlGenerator;
 use Twig_Loader_Chain;
 use Twig_Loader_Filesystem;
 
@@ -38,7 +39,7 @@ class PuliExtensionTest extends PHPUnit_Framework_TestCase
     private $repo;
 
     /**
-     * @var PHPUnit_Framework_MockObject_MockObject|AssetUrlGenerator
+     * @var PHPUnit_Framework_MockObject_MockObject|UrlGenerator
      */
     private $urlGenerator;
 
@@ -50,10 +51,7 @@ class PuliExtensionTest extends PHPUnit_Framework_TestCase
 
         $this->urlGenerator = $this->getMock('Puli\UrlGenerator\Api\UrlGenerator');
 
-        $this->twig = new RandomizedTwigEnvironment(new Twig_Loader_Chain(array(
-            new PuliTemplateLoader($this->repo),
-            new Twig_Loader_Filesystem(__DIR__.'/Fixtures'),
-        )));
+        $this->twig = new RandomizedTwigEnvironment(new PuliTemplateLoader($this->repo));
         $this->twig->addExtension(new PuliExtension($this->repo, $this->urlGenerator));
     }
 
@@ -113,10 +111,19 @@ class PuliExtensionTest extends PHPUnit_Framework_TestCase
         );
     }
 
+    /**
+     * @expectedException \Twig_Error_Loader
+     * @expectedExceptionMessage /acme/blog/views/non-puli/reference.txt.twig
+     */
     public function testIncludeNonPuliAndRelativePath()
     {
-        // Resolution of relative paths should work after including a template
-        // with a different loader than PuliTemplateLoader
+        $this->twig->render('/acme/blog/views/include-non-puli-and-relative.txt.twig');
+    }
+
+    public function testIncludeNonPuliAndRelativePathWithFallbackLoader()
+    {
+        $this->initFallbackLoader();
+
         $this->assertSame(
             "TEMPLATE\n\nNON PULI REFERENCE\n\nREFERENCE\n",
             $this->twig->render('/acme/blog/views/include-non-puli-and-relative.txt.twig')
@@ -173,6 +180,8 @@ class PuliExtensionTest extends PHPUnit_Framework_TestCase
 
     public function testExtendAbsolutePathNonPuli()
     {
+        $this->initFallbackLoader();
+
         $this->assertSame(
             "PARENT\n\nCHILD\n",
             $this->twig->render('/non-puli/extend-absolute.txt.twig')
@@ -181,14 +190,19 @@ class PuliExtensionTest extends PHPUnit_Framework_TestCase
 
     /**
      * @expectedException \Twig_Error_Loader
+     * @expectedExceptionMessage parent.txt.twig
      */
     public function testExtendRelativePathNonPuli()
     {
+        $this->initFallbackLoader();
+
         $this->twig->render('/non-puli/extend-relative.txt.twig');
     }
 
     public function testIncludeWhichExtendsAbsolutePathNonPuli()
     {
+        $this->initFallbackLoader();
+
         $this->assertSame(
             "TEMPLATE\n\nPARENT\n\nCHILD\n",
             $this->twig->render('/non-puli/include-extend-absolute.txt.twig')
@@ -197,9 +211,12 @@ class PuliExtensionTest extends PHPUnit_Framework_TestCase
 
     /**
      * @expectedException \Twig_Error_Loader
+     * @expectedExceptionMessage parent.txt.twig
      */
     public function testIncludeWhichExtendsRelativePathNonPuli()
     {
+        $this->initFallbackLoader();
+
         $this->twig->render('/non-puli/include-extend-relative.txt.twig');
     }
 
@@ -212,7 +229,7 @@ class PuliExtensionTest extends PHPUnit_Framework_TestCase
 
         $this->assertSame(
             "/blog/css/style.css\n",
-            $this->twig->render('/acme/blog/views/asset-url-absolute.txt.twig')
+            $this->twig->render('/acme/blog/views/resource-url-absolute.txt.twig')
         );
     }
 
@@ -225,7 +242,31 @@ class PuliExtensionTest extends PHPUnit_Framework_TestCase
 
         $this->assertSame(
             "/blog/css/style.css\n",
-            $this->twig->render('/acme/blog/views/asset-url-relative.txt.twig')
+            $this->twig->render('/acme/blog/views/resource-url-relative.txt.twig')
         );
+    }
+
+    public function testRenderUrlForNonExistingRelativePath()
+    {
+        // Make sure the exception thrown by generateUrl() contains the
+        // absolute path
+        $this->urlGenerator->expects($this->once())
+            ->method('generateUrl')
+            ->with('/acme/blog/foo/bar.css');
+
+        $this->twig->render('/acme/blog/views/resource-url-relative-fail.txt.twig');
+    }
+
+    private function initFallbackLoader()
+    {
+// Resolution of relative paths should work after including a template
+        // with a different loader than PuliTemplateLoader
+        $this->twig = new RandomizedTwigEnvironment(new Twig_Loader_Chain(array(
+            new PuliTemplateLoader($this->repo),
+            new Twig_Loader_Filesystem(__DIR__.'/Fixtures'),
+        )));
+
+        $this->twig->addExtension(new PuliExtension($this->repo,
+            $this->urlGenerator, true));
     }
 }

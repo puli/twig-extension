@@ -51,10 +51,16 @@ class PuliExtension extends Twig_Extension
      */
     private $urlGenerator;
 
-    public function __construct(ResourceRepository $repo, UrlGenerator $urlGenerator = null)
+    /**
+     * @var bool
+     */
+    private $supportFallbackLoader;
+
+    public function __construct(ResourceRepository $repo, UrlGenerator $urlGenerator = null, $supportFallbackLoader = false)
     {
         $this->repo = $repo;
         $this->urlGenerator = $urlGenerator;
+        $this->supportFallbackLoader = $supportFallbackLoader;
     }
 
     /**
@@ -74,7 +80,7 @@ class PuliExtension extends Twig_Extension
     {
         return array(
             new LoadedByPuliTagger(),
-            new TemplatePathResolver($this->repo, $this->urlGenerator)
+            new TemplatePathResolver($this->repo, $this->urlGenerator, $this->supportFallbackLoader),
         );
     }
 

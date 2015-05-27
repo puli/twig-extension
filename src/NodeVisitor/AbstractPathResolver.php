@@ -12,7 +12,6 @@
 namespace Puli\TwigExtension\NodeVisitor;
 
 use Puli\Repository\Api\ResourceRepository;
-use Puli\TwigExtension\PathResolver;
 use Twig_Environment;
 use Twig_Node_Module;
 use Twig_NodeInterface;
@@ -23,7 +22,7 @@ use Webmozart\PathUtil\Path;
  * @since  1.0
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-abstract class AbstractPathResolver implements Twig_NodeVisitorInterface, PathResolver
+abstract class AbstractPathResolver implements Twig_NodeVisitorInterface
 {
     /**
      * @var ResourceRepository
@@ -85,7 +84,7 @@ abstract class AbstractPathResolver implements Twig_NodeVisitorInterface, PathRe
     /**
      * {@inheritdoc}
      */
-    public function resolvePath($path, $currentDir)
+    protected function resolvePath($path, $currentDir, $checkPath = false)
     {
         // Empty path? WTF I don't want to deal with this.
         if ('' === $path) {
@@ -103,12 +102,13 @@ abstract class AbstractPathResolver implements Twig_NodeVisitorInterface, PathRe
         // With other loaders enabled, it may happen that a path looks like
         // a relative path, but is none, for example
         // "AcmeBlogBundle::index.html.twig", which doesn't start with a forward
-        // slash. For this reason, we should only resolve paths if they actually
-        // exist in the repository.
-        if ($this->repo->contains($absolutePath)) {
+        // slash. For this reason, if $checkPath is true, we should only resolve
+        // paths if they actually exist in the repository.
+        if (!$checkPath || $this->repo->contains($absolutePath)) {
             return $absolutePath;
         }
 
+        // Return the path unchanged if $checkPath and the path does not exist
         return $path;
     }
 
