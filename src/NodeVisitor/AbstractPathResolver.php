@@ -50,12 +50,12 @@ abstract class AbstractPathResolver implements Twig_NodeVisitorInterface
     public function enterNode(Twig_NodeInterface $node, Twig_Environment $env)
     {
         // Remember the directory of the current file
-        if ($node instanceof Twig_Node_Module && $node->hasAttribute('puli')) {
+        if ($node instanceof Twig_Node_Module && $node->hasAttribute('puli-dir')) {
             // Currently, it doesn't seem like Twig does recursive traversals
             // (i.e. starting the traversal of another module while a previous
             // one is still in progress). Thus we don't need to track existing
             // values here.
-            $this->currentDir = Path::getDirectory($node->getAttribute('filename'));
+            $this->currentDir = $node->getAttribute('puli-dir');
         }
 
         return $node;
@@ -84,7 +84,7 @@ abstract class AbstractPathResolver implements Twig_NodeVisitorInterface
     /**
      * {@inheritdoc}
      */
-    protected function resolvePath($path, $currentDir, $checkPath = false)
+    protected function resolvePath($path, $checkPath = false)
     {
         // Empty path? WTF I don't want to deal with this.
         if ('' === $path) {
@@ -97,7 +97,7 @@ abstract class AbstractPathResolver implements Twig_NodeVisitorInterface
         }
 
         // Resolve relative paths
-        $absolutePath = Path::makeAbsolute($path, $currentDir);
+        $absolutePath = Path::makeAbsolute($path, $this->currentDir);
 
         // With other loaders enabled, it may happen that a path looks like
         // a relative path, but is none, for example

@@ -18,18 +18,19 @@ use Twig_Node_Body;
 use Twig_Node_Module;
 use Twig_NodeInterface;
 use Twig_NodeVisitorInterface;
+use Webmozart\PathUtil\Path;
 
 /**
- * Adds the "puli" attribute to all {@link Twig_Module} nodes that were loaded
- * through the Puli loader.
+ * Adds the "puli-dir" attribute to all {@link Twig_Module} nodes that were
+ * loaded through the Puli loader.
  *
- * For these nodes, it is guaranteed that the "filename" attribute is a Puli
- * path.
+ * This attribute can be used to convert relative paths in the template to
+ * absolute paths.
  *
  * @since  1.0
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-class LoadedByPuliTagger implements Twig_NodeVisitorInterface
+class PuliDirTagger implements Twig_NodeVisitorInterface
 {
     /**
      * @var Twig_Node_Module|null
@@ -68,7 +69,10 @@ class LoadedByPuliTagger implements Twig_NodeVisitorInterface
         // return false in order to remove a node
         if ($node instanceof LoadedByPuliNode) {
             if (null !== $this->moduleNode) {
-                $this->moduleNode->setAttribute('puli', true);
+                $this->moduleNode->setAttribute(
+                    'puli-dir',
+                    Path::getDirectory($this->moduleNode->getAttribute('filename'))
+                );
             }
 
             // Remove that node from the final tree

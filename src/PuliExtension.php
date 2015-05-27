@@ -12,7 +12,7 @@
 namespace Puli\TwigExtension;
 
 use Puli\Repository\Api\ResourceRepository;
-use Puli\TwigExtension\NodeVisitor\LoadedByPuliTagger;
+use Puli\TwigExtension\NodeVisitor\PuliDirTagger;
 use Puli\TwigExtension\NodeVisitor\TemplatePathResolver;
 use Puli\TwigExtension\TokenParser\LoadedByPuliTokenParser;
 use Puli\UrlGenerator\Api\UrlGenerator;
@@ -79,7 +79,7 @@ class PuliExtension extends Twig_Extension
     public function getNodeVisitors()
     {
         return array(
-            new LoadedByPuliTagger(),
+            new PuliDirTagger(),
             new TemplatePathResolver($this->repo, $this->urlGenerator, $this->supportFallbackLoader),
         );
     }

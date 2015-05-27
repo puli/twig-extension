@@ -57,7 +57,7 @@ class PuliTemplateLoader implements Twig_LoaderInterface
             // trees of templates loaded through this loader. In this way, we
             // can turn relative Puli paths into absolute ones in those
             // templates. The "loaded_by_puli" tag is removed early on by the
-            // LoadedByPuliTagger visitor and does not appear in the final
+            // PuliDirTagger visitor and does not appear in the final
             // output.
             return "{% loaded_by_puli %}".$file->getBody();
         } catch (ResourceNotFoundException $e) {
