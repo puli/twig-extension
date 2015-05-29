@@ -22,7 +22,7 @@
     },
     "minimum-stability": "dev",
     "suggest": {
-        "puli/url-generator": "Enables the asset_url() function"
+        "puli/url-generator": "Enables the resource_url() function"
     },
     "autoload": {
         "psr-4": {
