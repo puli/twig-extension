@@ -16,13 +16,14 @@ use Puli\Repository\Api\Resource\BodyResource;
 use Puli\Repository\Api\ResourceNotFoundException;
 use Puli\Repository\Api\ResourceRepository;
 use Twig_Error_Loader;
+use Twig_ExistsLoaderInterface;
 use Twig_LoaderInterface;
 
 /**
  * @since  1.0
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-class PuliTemplateLoader implements Twig_LoaderInterface
+class PuliTemplateLoader implements Twig_LoaderInterface, Twig_ExistsLoaderInterface
 {
     private $repo;
 
@@ -124,5 +125,17 @@ class PuliTemplateLoader implements Twig_LoaderInterface
         } catch (InvalidArgumentException $e) {
             throw new Twig_Error_Loader($e->getMessage(), -1, null, $e);
         }
+    }
+
+    /**
+     * Check if we have the source code of a template, given its name.
+     *
+     * @param string $name The name of the template to check if we can load
+     *
+     * @return bool If the template source code is handled by this loader or not
+     */
+    public function exists($name)
+    {
+        return $this->repo->contains($name);
     }
 }

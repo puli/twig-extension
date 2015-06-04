@@ -64,4 +64,14 @@ class PuliTemplateLoaderTest extends PHPUnit_Framework_TestCase
 
         $this->loader->isFresh('/webmozart/puli/file', 123);
     }
+
+    public function testExistsReturnsFalseIfNoFileResource()
+    {
+        $this->repo->expects($this->once())
+            ->method('contains')
+            ->with('/webmozart/puli/file')
+            ->willReturn(false);
+
+        $this->assertFalse($this->loader->exists('/webmozart/puli/file'));
+    }
 }
