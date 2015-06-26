@@ -136,6 +136,10 @@ class PuliTemplateLoader implements Twig_LoaderInterface, Twig_ExistsLoaderInter
      */
     public function exists($name)
     {
-        return $this->repo->contains($name);
+        try {
+            return $this->repo->contains($name);
+        } catch (InvalidArgumentException $e) {
+            return false;
+        }
     }
 }
