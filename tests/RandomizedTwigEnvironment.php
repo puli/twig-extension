@@ -26,6 +26,7 @@ use Twig_LoaderInterface;
  * with different class names.
  *
  * @since  1.0
+ *
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
 class RandomizedTwigEnvironment extends Twig_Environment
@@ -44,5 +45,4 @@ class RandomizedTwigEnvironment extends Twig_Environment
 
         self::$previousPrefixes[$this->templateClassPrefix] = true;
     }
-
 }

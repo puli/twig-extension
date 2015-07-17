@@ -21,6 +21,7 @@ use Twig_LoaderInterface;
 
 /**
  * @since  1.0
+ *
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
 class PuliTemplateLoader implements Twig_LoaderInterface, Twig_ExistsLoaderInterface
@@ -60,7 +61,7 @@ class PuliTemplateLoader implements Twig_LoaderInterface, Twig_ExistsLoaderInter
             // templates. The "loaded_by_puli" tag is removed early on by the
             // PuliDirTagger visitor and does not appear in the final
             // output.
-            return "{% loaded_by_puli %}".$file->getBody();
+            return '{% loaded_by_puli %}'.$file->getBody();
         } catch (ResourceNotFoundException $e) {
             throw new Twig_Error_Loader($e->getMessage(), -1, null, $e);
         } catch (InvalidArgumentException $e) {

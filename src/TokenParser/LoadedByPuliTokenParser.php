@@ -22,6 +22,7 @@ use Twig_TokenParser;
  * {@link LoadedByPuliNode}.
  *
  * @since  1.0
+ *
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
 class LoadedByPuliTokenParser extends Twig_TokenParser

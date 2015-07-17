@@ -28,6 +28,7 @@ use Webmozart\PathUtil\Path;
  * absolute paths.
  *
  * @since  1.0
+ *
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
 class PuliDirTagger implements Twig_NodeVisitorInterface
@@ -96,7 +97,7 @@ class PuliDirTagger implements Twig_NodeVisitorInterface
      *
      * Priority should be between -10 and 10 (0 is the default).
      *
-     * @return integer The priority level
+     * @return int The priority level
      */
     public function getPriority()
     {

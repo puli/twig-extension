@@ -17,6 +17,7 @@ use Twig_Node;
  * Marks templates loaded by {@link TPuliTemplateLoader}.
  *
  * @since  1.0
+ *
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
 class LoadedByPuliNode extends Twig_Node

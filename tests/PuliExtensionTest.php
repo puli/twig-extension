@@ -24,6 +24,7 @@ use Twig_Loader_Filesystem;
 
 /**
  * @since  1.0
+ *
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
 class PuliExtensionTest extends PHPUnit_Framework_TestCase
@@ -66,7 +67,7 @@ class PuliExtensionTest extends PHPUnit_Framework_TestCase
     public function testRenderEmpty()
     {
         $this->assertSame(
-            "",
+            '',
             $this->twig->render('/acme/blog/views/empty.txt.twig')
         );
     }
@@ -259,7 +260,7 @@ class PuliExtensionTest extends PHPUnit_Framework_TestCase
 
     private function initFallbackLoader()
     {
-// Resolution of relative paths should work after including a template
+        // Resolution of relative paths should work after including a template
         // with a different loader than PuliTemplateLoader
         $this->twig = new RandomizedTwigEnvironment(new Twig_Loader_Chain(array(
             new PuliTemplateLoader($this->repo),

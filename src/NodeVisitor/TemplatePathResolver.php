@@ -25,6 +25,7 @@ use Twig_NodeInterface;
 
 /**
  * @since  1.0
+ *
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
 class TemplatePathResolver extends AbstractPathResolver
@@ -52,7 +53,7 @@ class TemplatePathResolver extends AbstractPathResolver
      *
      * Priority should be between -10 and 10 (0 is the default).
      *
-     * @return integer The priority level
+     * @return int The priority level
      */
     public function getPriority()
     {
