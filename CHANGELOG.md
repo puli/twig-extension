@@ -1,6 +1,10 @@
 Changelog
 =========
 
+* 1.0.0-beta5 (2015-08-12)
+
+ * implemented `Twig_ExistsLoaderInterface` in `PuliTemplateLoader`
+
 * 1.0.0-beta4 (2015-05-29)
 
  * upgraded to webmozart/path-util 2.0
