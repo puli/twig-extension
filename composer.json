@@ -12,12 +12,12 @@
     "require": {
         "php": ">=5.3.9",
         "puli/repository": "1.0.*",
-        "twig/twig": "~1.0",
-        "webmozart/path-util": "~2.0"
+        "twig/twig": "^1.0",
+        "webmozart/path-util": "^2.0"
     },
     "require-dev": {
-        "puli/url-generator": "~1.0",
-        "symfony/http-kernel": "~2.3",
+        "puli/url-generator": "^1.0",
+        "symfony/http-kernel": "^2.3",
         "phpunit/phpunit": "^4.6"
     },
     "minimum-stability": "dev",
