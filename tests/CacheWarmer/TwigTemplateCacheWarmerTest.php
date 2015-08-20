@@ -28,7 +28,9 @@ class TwigTemplateCacheWarmerTest extends PHPUnit_Framework_TestCase
         $repo = new InMemoryRepository();
         $repo->add('/webmozart/puli', new DirectoryResource(__DIR__.'/Fixtures'));
 
-        $twig = $this->getMock('Twig_Environment', array('loadTemplate'));
+        $twig = $this->getMockBuilder('Twig_Environment')
+            ->disableOriginalConstructor()
+            ->getMock();
 
         $warmer = new TwigTemplateCacheWarmer($repo, $twig);
 
