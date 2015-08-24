@@ -1,6 +1,11 @@
 Changelog
 =========
 
+* 1.0.0-beta6 (2015-08-24)
+
+ * fixed minimum package versions in composer.json
+ * added compatibility with Twig 2.0
+
 * 1.0.0-beta5 (2015-08-12)
 
  * implemented `Twig_ExistsLoaderInterface` in `PuliTemplateLoader`
