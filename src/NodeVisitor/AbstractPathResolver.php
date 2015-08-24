@@ -12,10 +12,10 @@
 namespace Puli\TwigExtension\NodeVisitor;
 
 use Puli\Repository\Api\ResourceRepository;
+use Twig_BaseNodeVisitor;
 use Twig_Environment;
+use Twig_Node;
 use Twig_Node_Module;
-use Twig_NodeInterface;
-use Twig_NodeVisitorInterface;
 use Webmozart\PathUtil\Path;
 
 /**
@@ -23,7 +23,7 @@ use Webmozart\PathUtil\Path;
  *
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-abstract class AbstractPathResolver implements Twig_NodeVisitorInterface
+abstract class AbstractPathResolver extends Twig_BaseNodeVisitor
 {
     /**
      * @var ResourceRepository
@@ -41,14 +41,9 @@ abstract class AbstractPathResolver implements Twig_NodeVisitorInterface
     }
 
     /**
-     * Called before child nodes are visited.
-     *
-     * @param Twig_NodeInterface $node The node to visit
-     * @param Twig_Environment   $env  The Twig environment instance
-     *
-     * @return Twig_NodeInterface The modified node
+     * {@inheritdoc}
      */
-    public function enterNode(Twig_NodeInterface $node, Twig_Environment $env)
+    protected function doEnterNode(Twig_Node $node, Twig_Environment $env)
     {
         // Remember the directory of the current file
         if ($node instanceof Twig_Node_Module && $node->hasAttribute('puli-dir')) {
@@ -63,14 +58,9 @@ abstract class AbstractPathResolver implements Twig_NodeVisitorInterface
     }
 
     /**
-     * Called after child nodes are visited.
-     *
-     * @param Twig_NodeInterface $node The node to visit
-     * @param Twig_Environment   $env  The Twig environment instance
-     *
-     * @return Twig_NodeInterface|false The modified node or false if the node must be removed
+     * {@inheritdoc}
      */
-    public function leaveNode(Twig_NodeInterface $node, Twig_Environment $env)
+    protected function doLeaveNode(Twig_Node $node, Twig_Environment $env)
     {
         // Only process if the current directory was set
         if (null !== $this->currentDir) {
@@ -114,9 +104,9 @@ abstract class AbstractPathResolver implements Twig_NodeVisitorInterface
     }
 
     /**
-     * @param Twig_NodeInterface $node
+     * @param Twig_Node $node
      *
-     * @return Twig_NodeInterface
+     * @return Twig_Node|null
      */
-    abstract protected function processNode(Twig_NodeInterface $node);
+    abstract protected function processNode(Twig_Node $node);
 }

@@ -21,7 +21,6 @@ use Twig_Node_Expression_Function;
 use Twig_Node_Import;
 use Twig_Node_Include;
 use Twig_Node_Module;
-use Twig_NodeInterface;
 
 /**
  * @since  1.0
@@ -63,7 +62,7 @@ class TemplatePathResolver extends AbstractPathResolver
     /**
      * {@inheritdoc}
      */
-    protected function processNode(Twig_NodeInterface $node)
+    protected function processNode(Twig_Node $node)
     {
         if ($node instanceof Twig_Node_Module) {
             return $this->processModuleNode($node);

@@ -12,12 +12,11 @@
 namespace Puli\TwigExtension\NodeVisitor;
 
 use Puli\TwigExtension\Node\LoadedByPuliNode;
+use Twig_BaseNodeVisitor;
 use Twig_Environment;
 use Twig_Node;
 use Twig_Node_Body;
 use Twig_Node_Module;
-use Twig_NodeInterface;
-use Twig_NodeVisitorInterface;
 use Webmozart\PathUtil\Path;
 
 /**
@@ -31,7 +30,7 @@ use Webmozart\PathUtil\Path;
  *
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-class PuliDirTagger implements Twig_NodeVisitorInterface
+class PuliDirTagger extends Twig_BaseNodeVisitor
 {
     /**
      * @var Twig_Node_Module|null
@@ -41,12 +40,12 @@ class PuliDirTagger implements Twig_NodeVisitorInterface
     /**
      * Called before child nodes are visited.
      *
-     * @param Twig_NodeInterface $node The node to visit
-     * @param Twig_Environment   $env  The Twig environment instance
+     * @param Twig_Node        $node The node to visit
+     * @param Twig_Environment $env  The Twig environment instance
      *
-     * @return Twig_NodeInterface The modified node
+     * @return Twig_Node The modified node
      */
-    public function enterNode(Twig_NodeInterface $node, Twig_Environment $env)
+    protected function doEnterNode(Twig_Node $node, Twig_Environment $env)
     {
         if ($node instanceof Twig_Node_Module) {
             $this->moduleNode = $node;
@@ -58,12 +57,12 @@ class PuliDirTagger implements Twig_NodeVisitorInterface
     /**
      * Called after child nodes are visited.
      *
-     * @param Twig_NodeInterface $node The node to visit
-     * @param Twig_Environment   $env  The Twig environment instance
+     * @param Twig_Node        $node The node to visit
+     * @param Twig_Environment $env  The Twig environment instance
      *
-     * @return Twig_NodeInterface|false The modified node or false if the node must be removed
+     * @return Twig_Node|false The modified node or false if the node must be removed
      */
-    public function leaveNode(Twig_NodeInterface $node, Twig_Environment $env)
+    protected function doLeaveNode(Twig_Node $node, Twig_Environment $env)
     {
         // Tag the node if it contains a LoadedByPuliNode
         // This cannot be done in enterNode(), because only leaveNode() may
