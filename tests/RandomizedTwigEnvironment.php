@@ -40,9 +40,13 @@ class RandomizedTwigEnvironment extends Twig_Environment
         // Make sure the template class prefix is different for every new
         // instance of this class to isolate the tests
         do {
-            $this->templateClassPrefix = '__TwigTemplate_'.rand(10000, 99999).'_';
-        } while (isset(self::$previousPrefixes[$this->templateClassPrefix]));
+            $templateClassPrefix = '__TwigTemplate_'.rand(10000, 99999).'_';
+        } while (isset(self::$previousPrefixes[$templateClassPrefix]));
 
-        self::$previousPrefixes[$this->templateClassPrefix] = true;
+        self::$previousPrefixes[$templateClassPrefix] = true;
+
+        $p = new \ReflectionProperty('Twig_Environment', 'templateClassPrefix');
+        $p->setAccessible(true);
+        $p->setValue($this, $templateClassPrefix);
     }
 }
