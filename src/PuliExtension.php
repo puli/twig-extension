@@ -16,6 +16,7 @@ use Puli\TwigExtension\NodeVisitor\PuliDirTagger;
 use Puli\TwigExtension\NodeVisitor\TemplatePathResolver;
 use Puli\TwigExtension\TokenParser\LoadedByPuliTokenParser;
 use Puli\UrlGenerator\Api\UrlGenerator;
+use RuntimeException;
 use Twig_Extension;
 use Twig_SimpleFunction;
 
@@ -99,7 +100,7 @@ class PuliExtension extends Twig_Extension
     public function getFunctions()
     {
         if (!$this->urlGenerator) {
-            return array();
+            throw new RuntimeException('The resource_url() Twig function requires a UrlGenerator to be set in PuliExtension.');
         }
 
         return array(
