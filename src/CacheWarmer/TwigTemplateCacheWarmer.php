@@ -82,7 +82,7 @@ class TwigTemplateCacheWarmer implements CacheWarmerInterface
     /**
      * Returns whether this warmer is optional or not.
      *
-     * @return Boolean always true
+     * @return bool always true
      */
     public function isOptional()
     {

@@ -103,7 +103,7 @@ class PuliTemplateLoader implements Twig_LoaderInterface, Twig_ExistsLoaderInter
      * @param string $path The template name
      * @param int    $time The last modification time of the cached template
      *
-     * @return Boolean true if the template is fresh, false otherwise
+     * @return bool true if the template is fresh, false otherwise
      *
      * @throws Twig_Error_Loader When $path is not found
      */
