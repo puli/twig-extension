@@ -2,8 +2,8 @@ Puli Extension for Twig
 =======================
 
 [![Build Status](https://travis-ci.org/puli/twig-extension.png?branch=master)](https://travis-ci.org/puli/twig-extension)
+[![Build status](https://ci.appveyor.com/api/projects/status/bnnfj371jp7tb9gx/branch/master?svg=true)](https://ci.appveyor.com/project/webmozart/twig-extension/branch/master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/puli/twig-extension/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/puli/twig-extension/?branch=master)
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/63fa6b60-7f9c-4a47-ab76-db0e259f9075/mini.png)](https://insight.sensiolabs.com/projects/63fa6b60-7f9c-4a47-ab76-db0e259f9075)
 [![Latest Stable Version](https://poser.pugx.org/puli/twig-extension/v/stable.png)](https://packagist.org/packages/puli/twig-extension)
 [![Total Downloads](https://poser.pugx.org/puli/twig-extension/downloads.png)](https://packagist.org/packages/puli/twig-extension)
 [![Dependency Status](https://www.versioneye.com/php/puli:twig-extension/1.0.0/badge.png)](https://www.versioneye.com/php/puli:twig-extension/1.0.0)
