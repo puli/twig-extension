@@ -18,7 +18,8 @@
     "require-dev": {
         "puli/url-generator": "^1.0",
         "symfony/http-kernel": "^2.3",
-        "phpunit/phpunit": "^4.6"
+        "phpunit/phpunit": "^4.6",
+        "sebastian/version": "^1.0.1"
     },
     "minimum-stability": "dev",
     "suggest": {
