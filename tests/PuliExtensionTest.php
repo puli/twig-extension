@@ -16,6 +16,7 @@ use PHPUnit_Framework_TestCase;
 use Puli\Repository\InMemoryRepository;
 use Puli\Repository\Resource\DirectoryResource;
 use Puli\Repository\Resource\GenericResource;
+use Puli\Repository\Resource\LinkResource;
 use Puli\TwigExtension\PuliExtension;
 use Puli\TwigExtension\PuliTemplateLoader;
 use Puli\UrlGenerator\Api\UrlGenerator;
@@ -48,6 +49,8 @@ class PuliExtensionTest extends PHPUnit_Framework_TestCase
     {
         $this->repo = new InMemoryRepository();
         $this->repo->add('/acme/blog/views', new DirectoryResource(__DIR__.'/Fixtures/puli'));
+        $this->repo->add('/acme/blog/views-link', new LinkResource('/acme/blog/views'));
+        $this->repo->add('/acme/blog/views/template-link.txt.twig', new LinkResource('/acme/blog/views/template.txt.twig'));
         $this->repo->add('/acme/blog/css/style.css', new GenericResource());
 
         $this->urlGenerator = $this->getMock('Puli\UrlGenerator\Api\UrlGenerator');
@@ -61,6 +64,14 @@ class PuliExtensionTest extends PHPUnit_Framework_TestCase
         $this->assertSame(
             "TEMPLATE\n",
             $this->twig->render('/acme/blog/views/template.txt.twig')
+        );
+    }
+
+    public function testRenderLink()
+    {
+        $this->assertSame(
+            "TEMPLATE\n",
+            $this->twig->render('/acme/blog/views/template-link.txt.twig')
         );
     }
 

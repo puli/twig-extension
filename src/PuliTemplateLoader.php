@@ -15,6 +15,7 @@ use InvalidArgumentException;
 use Puli\Repository\Api\Resource\BodyResource;
 use Puli\Repository\Api\ResourceNotFoundException;
 use Puli\Repository\Api\ResourceRepository;
+use Puli\Repository\Resource\LinkResource;
 use Twig_Error_Loader;
 use Twig_ExistsLoaderInterface;
 use Twig_LoaderInterface;
@@ -45,23 +46,13 @@ class PuliTemplateLoader implements Twig_LoaderInterface, Twig_ExistsLoaderInter
     public function getSource($path)
     {
         try {
-            $file = $this->repo->get($path);
-
-            if (!$file instanceof BodyResource) {
-                throw new Twig_Error_Loader(sprintf(
-                    'Can only load file resources. Resource "%s" is of type %s.',
-                    $path,
-                    is_object($file) ? get_class($file) : gettype($file)
-                ));
-            }
-
             // The "loaded_by_puli" tag makes it possible to recognize node
             // trees of templates loaded through this loader. In this way, we
             // can turn relative Puli paths into absolute ones in those
             // templates. The "loaded_by_puli" tag is removed early on by the
             // PuliDirTagger visitor and does not appear in the final
             // output.
-            return '{% loaded_by_puli %}'.$file->getBody();
+            return '{% loaded_by_puli %}'.$this->getResource($path)->getBody();
         } catch (ResourceNotFoundException $e) {
             throw new Twig_Error_Loader($e->getMessage(), -1, null, $e);
         } catch (InvalidArgumentException $e) {
@@ -89,7 +80,7 @@ class PuliTemplateLoader implements Twig_LoaderInterface, Twig_ExistsLoaderInter
             // If loaded through a different loader, relative paths won't be
             // resolved, so we'll have the wrong version of the template in
             // he cache.
-            return '__puli__'.$this->repo->get($path)->getPath();
+            return '__puli__'.$this->getResource($path)->getPath();
         } catch (ResourceNotFoundException $e) {
             throw new Twig_Error_Loader($e->getMessage(), -1, null, $e);
         } catch (InvalidArgumentException $e) {
@@ -110,17 +101,7 @@ class PuliTemplateLoader implements Twig_LoaderInterface, Twig_ExistsLoaderInter
     public function isFresh($path, $time)
     {
         try {
-            $file = $this->repo->get($path);
-
-            if (!$file instanceof BodyResource) {
-                throw new Twig_Error_Loader(sprintf(
-                    'Can only load file resources. Resource "%s" is of type %s.',
-                    $path,
-                    is_object($file) ? get_class($file) : gettype($file)
-                ));
-            }
-
-            return $file->getMetadata()->getModificationTime() <= $time;
+            return $this->getResource($path)->getMetadata()->getModificationTime() <= $time;
         } catch (ResourceNotFoundException $e) {
             throw new Twig_Error_Loader($e->getMessage(), -1, null, $e);
         } catch (InvalidArgumentException $e) {
@@ -142,5 +123,24 @@ class PuliTemplateLoader implements Twig_LoaderInterface, Twig_ExistsLoaderInter
         } catch (InvalidArgumentException $e) {
             return false;
         }
+    }
+
+    private function getResource($path)
+    {
+        $resource = $this->repo->get($path);
+
+        while ($resource instanceof LinkResource) {
+            $resource = $this->repo->get($resource->getTargetPath());
+        }
+
+        if (!$resource instanceof BodyResource) {
+            throw new Twig_Error_Loader(sprintf(
+                'Can only load file resources. Resource "%s" is of type %s.',
+                $path,
+                is_object($resource) ? get_class($resource) : gettype($resource)
+            ));
+        }
+
+        return $resource;
     }
 }

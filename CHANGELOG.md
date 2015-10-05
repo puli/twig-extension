@@ -5,6 +5,7 @@ Changelog
 
  * a more helpful exception is now being thrown when the puli/url-generator
    component is not installed and the `resource_url()` function is used
+ * added support for `LinkResource`
 
 * 1.0.0-beta6 (2015-08-24)
 
