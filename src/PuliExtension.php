@@ -98,9 +98,7 @@ class PuliExtension extends Twig_Extension
      */
     public function getFunctions()
     {
-        if (!$this->urlGenerator) {
-            return array();
-        }
+        // A RuntimeException is thrown by TemplatePathResolver if urlGenerator is missing.
 
         return array(
             new Twig_SimpleFunction('resource_url', array($this->urlGenerator, 'generateUrl')),
