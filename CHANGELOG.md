@@ -1,6 +1,11 @@
 Changelog
 =========
 
+* 1.0.0-beta7 (2015-10-05)
+
+ * a more helpful exception is now being thrown when the puli/url-generator
+   component is not installed and the `resource_url()` function is used
+
 * 1.0.0-beta6 (2015-08-24)
 
  * fixed minimum package versions in composer.json
