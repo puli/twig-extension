@@ -1,9 +1,9 @@
 Puli Extension for Twig
 =======================
 
-[![Build Status](https://travis-ci.org/puli/twig-extension.png?branch=master)](https://travis-ci.org/puli/twig-extension)
+[![Build Status](https://travis-ci.org/puli/twig-extension.png?branch=1.0.0-beta7)](https://travis-ci.org/puli/twig-extension)
 [![Build status](https://ci.appveyor.com/api/projects/status/bnnfj371jp7tb9gx/branch/master?svg=true)](https://ci.appveyor.com/project/webmozart/twig-extension/branch/master)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/puli/twig-extension/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/puli/twig-extension/?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/puli/twig-extension/badges/quality-score.png?b=1.0.0-beta7)](https://scrutinizer-ci.com/g/puli/twig-extension/?branch=1.0.0-beta7)
 [![Latest Stable Version](https://poser.pugx.org/puli/twig-extension/v/stable.png)](https://packagist.org/packages/puli/twig-extension)
 [![Total Downloads](https://poser.pugx.org/puli/twig-extension/downloads.png)](https://packagist.org/packages/puli/twig-extension)
 [![Dependency Status](https://www.versioneye.com/php/puli:twig-extension/1.0.0/badge.png)](https://www.versioneye.com/php/puli:twig-extension/1.0.0)
