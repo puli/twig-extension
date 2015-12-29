@@ -19,7 +19,7 @@ files through [Puli] paths:
 echo $twig->render('/acme/blog/views/show.html.twig');
 ```
 
-Read [Puli at a Glance] if you want to learn more about Puli.
+Read [the Puli documentation] if you want to learn more about Puli.
 
 Authors
 -------
@@ -30,7 +30,7 @@ Authors
 Installation/Documentation
 --------------------------
 
-Follow the guide [Loading Twig Templates with Puli] to install the extension in
+Follow the guide [The Puli Extension for Twig] to install the extension in
 your project. This guide will tell you all you need to know to use the extension.
 
 Contribute
@@ -56,8 +56,8 @@ All contents of this package are licensed under the [MIT license].
 [The Community Contributors]: https://github.com/puli/twig-extension/graphs/contributors
 [Twig templating engine]: http://twig.sensiolabs.org
 [Puli]: http://puli.io
-[Loading Twig Templates with Puli]: http://docs.puli.io/en/latest/extensions/twig.html
-[Puli at a Glance]: http://docs.puli.io/en/latest/at-a-glance.html
+[The Puli Extension for Twig]: http://docs.puli.io/en/latest/extensions/twig.html
+[the Puli documentation]: http://docs.puli.io/en/latest/index.html
 [issue tracker]: https://github.com/puli/issues/issues
 [Git repository]: https://github.com/puli/twig-extension
 [@webmozart]: https://twitter.com/webmozart
