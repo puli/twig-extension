@@ -14,8 +14,8 @@ namespace Puli\TwigExtension\Tests;
 use PHPUnit_Framework_MockObject_MockObject;
 use PHPUnit_Framework_TestCase;
 use Puli\Repository\Api\ResourceRepository;
-use Puli\Repository\Tests\Resource\TestDirectory;
 use Puli\TwigExtension\PuliTemplateLoader;
+use Puli\TwigExtension\Tests\Fixtures\TestDirectory;
 
 /**
  * @since  1.0
