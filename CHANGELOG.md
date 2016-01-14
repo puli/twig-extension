@@ -1,6 +1,10 @@
 Changelog
 =========
 
+* 1.0.0-beta8 (2016-01-14)
+
+ * made compatible with the puli/repository 1.0.0-beta9
+
 * 1.0.0-beta7 (2015-10-05)
 
  * a more helpful exception is now being thrown when the puli/url-generator
