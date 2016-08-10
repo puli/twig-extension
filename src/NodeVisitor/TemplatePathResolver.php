@@ -153,8 +153,8 @@ class TemplatePathResolver extends AbstractPathResolver
     {
         if (!$this->urlGenerator) {
             throw new RuntimeException(
-                'The resource_url() function is only available if '.
-                'puli/url-generator is installed.'
+                'The resource_url() function is only available if puli/url-generator is installed and an instance of'.
+                '"Puli\UrlGenerator\Api\UrlGenerator" is passed to the TemplatePathResolver.'
             );
         }
 
