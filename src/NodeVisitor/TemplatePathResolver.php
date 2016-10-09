@@ -86,7 +86,7 @@ class TemplatePathResolver extends AbstractPathResolver
     private function processModuleNode(Twig_Node_Module $node)
     {
         // Resolve relative parent template paths to absolute paths
-        $parentNode = $node->getNode('parent');
+        $parentNode = $node->hasNode('parent') ? $node->getNode('parent') : null;
         $traitsNode = $node->getNode('traits');
 
         // If the template extends another template, resolve the path
