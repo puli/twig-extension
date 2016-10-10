@@ -109,7 +109,7 @@ class TemplatePathResolver extends AbstractPathResolver
 
     private function processEmbeddedTemplateNode(Twig_Node_Module $embeddedNode)
     {
-        $embedParent = $embeddedNode->hasParent('parent') ? $embeddedNode->getNode('parent') : null;
+        $embedParent = $embeddedNode->hasNode('parent') ? $embeddedNode->getNode('parent') : null;
 
         // If the template extends another template, resolve the path
         if ($embedParent instanceof Twig_Node_Expression_Constant) {
